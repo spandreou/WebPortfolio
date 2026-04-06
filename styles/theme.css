@@ -1,0 +1,111 @@
+:root {
+  --bg-primary: #020617;
+  --text-primary: #e2f7ff;
+  --text-secondary: #94acc0;
+  --accent: #22d3ee;
+  --accent-strong: #67e8f9;
+  --navbar-height: 5rem;
+}
+
+.glass-panel {
+  border: 1px solid rgba(122, 231, 249, 0.24);
+  background: linear-gradient(
+    135deg,
+    rgba(4, 10, 24, 0.84) 0%,
+    rgba(6, 26, 44, 0.46) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 22px 40px rgba(0, 0, 0, 0.42),
+    0 0 35px rgba(34, 211, 238, 0.08);
+  backdrop-filter: blur(16px);
+}
+
+.liquid-blob {
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+.background-grid {
+  background-image:
+    linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+  background-size: 84px 84px;
+  mask-image: radial-gradient(circle at center, black 38%, transparent 100%);
+}
+
+.background-vignette {
+  background: radial-gradient(
+    circle at center,
+    transparent 25%,
+    rgba(2, 6, 23, 0.9) 85%
+  );
+}
+
+.hero-title {
+  text-shadow: 0 0 24px rgba(34, 211, 238, 0.35);
+}
+
+.target-scanline {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(103, 232, 249, 0.95),
+    transparent
+  );
+  animation: scanline 4.4s ease-in-out infinite;
+}
+
+.frame-corner {
+  position: absolute;
+  height: 14px;
+  width: 14px;
+  border-color: rgba(103, 232, 249, 0.9);
+}
+
+.corner-tl {
+  left: 12px;
+  top: 12px;
+  border-left-width: 2px;
+  border-top-width: 2px;
+}
+
+.corner-tr {
+  right: 12px;
+  top: 12px;
+  border-right-width: 2px;
+  border-top-width: 2px;
+}
+
+.corner-bl {
+  bottom: 12px;
+  left: 12px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+}
+
+.corner-br {
+  bottom: 12px;
+  right: 12px;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+}
+
+@keyframes scanline {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  44% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  56% {
+    opacity: 0.85;
+  }
+}
