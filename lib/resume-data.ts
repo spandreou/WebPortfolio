@@ -65,7 +65,7 @@ export const resumeData: ResumeData = {
   skills: {
     frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Tailwind CSS"],
     backend: ["Python", "Java", "C", "C#", "PHP"],
-    databases: ["SQL", "MySQL"],
+    databases: ["SQL", "MySQL", "PostgreSQL"],
     devtools: ["Git", "GitHub", "Vite", "Wireshark", "MATLAB", "Microsoft Office"],
     ai: [
       "AI-Assisted Development",
