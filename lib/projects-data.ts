@@ -118,4 +118,46 @@ export const projectsData: ProjectItem[] = [
     featured: false,
     status: "in-progress",
   },
+  {
+    name: "WebPortfolio",
+    slug: "webportfolio",
+    shortDescription:
+      "Personal portfolio website with structured resume, project showcase, and polished contact flow.",
+    fullDescription:
+      "A production-focused portfolio built with modular data architecture, reusable UI sections, responsive layout patterns, and a cohesive futuristic design system.",
+    technologies: [
+      "Next.js 15",
+      "TypeScript",
+      "Tailwind CSS",
+      "Framer Motion",
+      "Lucide React",
+    ],
+    category: "web",
+    githubUrl: "https://github.com/spandreou/WebPortfolio",
+    featured: false,
+    status: "in-progress",
+  },
+  {
+    name: "homeLabShare",
+    slug: "homelabshare",
+    shortDescription:
+      "Private, invite-only homelab file sharing platform with secure access and operational monitoring.",
+    fullDescription:
+      "A full-stack platform combining controlled onboarding, shared file exploration, system health visibility, SMTP notifications, and Cloudflare Tunnel exposure with a PostgreSQL-backed architecture.",
+    technologies: [
+      "Next.js App Router",
+      "React",
+      "TypeScript",
+      "Prisma ORM",
+      "PostgreSQL",
+      "Docker",
+      "Docker Compose",
+      "Cloudflare Tunnel",
+      "SMTP",
+    ],
+    category: "systems",
+    githubUrl: "https://github.com/spandreou/homelabshare",
+    featured: false,
+    status: "in-progress",
+  },
 ];
