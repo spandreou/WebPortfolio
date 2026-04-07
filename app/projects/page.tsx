@@ -3,11 +3,16 @@ import { Button } from "@/components/Button";
 import { FeaturedProjectCard } from "@/components/projects/FeaturedProjectCard";
 import { ProjectsGrid } from "@/components/projects/ProjectsGrid";
 import { ProjectsHero } from "@/components/projects/ProjectsHero";
+import { createMetadata } from "@/lib/metadata";
 import { projectsData } from "@/lib/projects-data";
 
 export const metadata: Metadata = {
-  title: "Projects | SPYRIDON ANDREOU",
-  description: "Portfolio projects and technical builds.",
+  ...createMetadata({
+    title: "Projects",
+    description:
+      "Technical portfolio projects with featured work, categorized stack details, and current development status.",
+    path: "/projects",
+  }),
 };
 
 export default function ProjectsPage() {
@@ -63,8 +68,10 @@ export default function ProjectsPage() {
           If you want to review implementation details, I would be happy to connect.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button href="/contact">Contact Me</Button>
-          <Button href="/resume" variant="secondary">
+          <Button href="/contact" className="w-full sm:w-auto">
+            Contact Me
+          </Button>
+          <Button href="/resume" variant="secondary" className="w-full sm:w-auto">
             View Resume
           </Button>
         </div>

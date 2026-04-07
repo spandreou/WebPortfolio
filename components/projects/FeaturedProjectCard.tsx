@@ -3,7 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import Link from "next/link";
-import type { ProjectItem } from "@/lib/projects-data";
+import {
+  type ProjectItem,
+  projectCategoryLabels,
+  projectStatusLabels,
+} from "@/lib/projects-data";
 
 type FeaturedProjectCardProps = {
   project: ProjectItem;
@@ -41,10 +45,10 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
       </div>
       <div className="mt-5 flex flex-wrap gap-2">
         <span className="rounded-full border border-white/16 bg-slate-950/72 px-3 py-1.5 text-xs uppercase tracking-[0.16em] text-slate-300">
-          {project.category}
+          {projectCategoryLabels[project.category]}
         </span>
         <span className="rounded-full border border-cyan-300/28 bg-cyan-300/12 px-3 py-1.5 text-xs uppercase tracking-[0.16em] text-cyan-100">
-          {project.status}
+          {projectStatusLabels[project.status]}
         </span>
       </div>
       <div className="mt-6">

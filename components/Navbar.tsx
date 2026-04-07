@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Container } from "@/components/Container";
+import { siteConfig } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -18,6 +19,7 @@ const navLinks = [
 export function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const mobileMenuId = "mobile-navigation";
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -32,12 +34,12 @@ export function Navbar() {
           onClick={() => setMenuOpen(false)}
         >
           <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.85)]" />
-          <span className="font-mono text-xs tracking-[0.28em] text-cyan-100/90 sm:text-sm">
-            SPYRIDON ANDREOU
+          <span className="font-mono text-[0.62rem] tracking-[0.18em] text-cyan-100/90 sm:text-sm sm:tracking-[0.28em]">
+            {siteConfig.name.toUpperCase()}
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 md:flex">
+        <nav aria-label="Primary navigation" className="hidden items-center gap-7 md:flex">
           {navLinks.map((item) => (
             <Link
               key={item.label}
@@ -57,6 +59,7 @@ export function Navbar() {
           type="button"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
+          aria-controls={mobileMenuId}
           className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-cyan-300/25 bg-slate-950/70 text-cyan-100 md:hidden"
           onClick={() => setMenuOpen((open) => !open)}
         >
@@ -67,6 +70,7 @@ export function Navbar() {
       <AnimatePresence>
         {menuOpen ? (
           <motion.div
+            id={mobileMenuId}
             key="mobile-menu"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -75,7 +79,7 @@ export function Navbar() {
             className="border-t border-cyan-300/12 bg-slate-950/84 backdrop-blur-xl md:hidden"
           >
             <Container className="py-4">
-              <nav className="glass-panel flex flex-col rounded-2xl p-2">
+              <nav aria-label="Mobile navigation" className="glass-panel flex flex-col rounded-2xl p-2">
                 {navLinks.map((item) => (
                   <Link
                     key={item.label}

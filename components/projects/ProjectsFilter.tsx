@@ -1,6 +1,10 @@
 "use client";
 
-import type { ProjectItem } from "@/lib/projects-data";
+import {
+  type ProjectItem,
+  projectCategoryLabels,
+  projectStatusLabels,
+} from "@/lib/projects-data";
 import { cn } from "@/lib/utils";
 
 export type CategoryFilter = ProjectItem["category"] | "all";
@@ -39,6 +43,7 @@ export function ProjectsFilter({
             <button
               key={category}
               type="button"
+              aria-pressed={selectedCategory === category}
               onClick={() => onCategoryChange(category as CategoryFilter)}
               className={cn(
                 "rounded-full border px-3 py-1.5 text-xs transition sm:text-sm",
@@ -47,7 +52,9 @@ export function ProjectsFilter({
                   : "border-white/14 bg-slate-950/65 text-slate-300 hover:border-cyan-200/30 hover:text-cyan-100",
               )}
             >
-              {category}
+              {category === "all"
+                ? "All"
+                : projectCategoryLabels[category as ProjectItem["category"]]}
             </button>
           ))}
         </div>
@@ -62,6 +69,7 @@ export function ProjectsFilter({
             <button
               key={status}
               type="button"
+              aria-pressed={selectedStatus === status}
               onClick={() => onStatusChange(status)}
               className={cn(
                 "rounded-full border px-3 py-1.5 text-xs transition sm:text-sm",
@@ -70,7 +78,9 @@ export function ProjectsFilter({
                   : "border-white/14 bg-slate-950/65 text-slate-300 hover:border-cyan-200/30 hover:text-cyan-100",
               )}
             >
-              {status}
+              {status === "all"
+                ? "All"
+                : projectStatusLabels[status as ProjectItem["status"]]}
             </button>
           ))}
         </div>

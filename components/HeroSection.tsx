@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/Button";
 import { TargetFrame } from "@/components/TargetFrame";
+import { siteConfig } from "@/lib/site-config";
 
 export function HeroSection() {
   return (
@@ -31,8 +32,8 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         >
           <TargetFrame>
-            <h1 className="hero-title text-4xl font-semibold tracking-tight text-slate-100 sm:text-6xl">
-              SPYRIDON ANDREOU
+            <h1 className="hero-title text-3xl font-semibold tracking-tight text-slate-100 sm:text-5xl lg:text-6xl">
+              {siteConfig.name.toUpperCase()}
             </h1>
           </TargetFrame>
         </motion.div>
@@ -48,11 +49,11 @@ export function HeroSection() {
           </p>
 
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button href="/projects">
+            <Button href="/projects" className="w-full sm:w-auto">
               View Projects
               <ArrowUpRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button href="/contact" variant="secondary">
+            <Button href="/contact" variant="secondary" className="w-full sm:w-auto">
               Contact Me
             </Button>
           </div>

@@ -7,11 +7,16 @@ import { LanguagesPanel } from "@/components/resume/LanguagesPanel";
 import { ResumeHeroCard } from "@/components/resume/ResumeHeroCard";
 import { ResumeSectionHeading } from "@/components/resume/ResumeSectionHeading";
 import { SkillsCategoryGrid } from "@/components/resume/SkillsCategoryGrid";
+import { createMetadata } from "@/lib/metadata";
 import { resumeData } from "@/lib/resume-data";
 
 export const metadata: Metadata = {
-  title: "Resume | SPYRIDON ANDREOU",
-  description: "Interactive resume and professional profile.",
+  ...createMetadata({
+    title: "Resume",
+    description:
+      "Professional resume overview covering education, experience, technical skills, and certifications.",
+    path: "/resume",
+  }),
 };
 
 export default function ResumePage() {
@@ -66,8 +71,10 @@ export default function ResumePage() {
           and junior opportunities.
         </p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Button href="/projects">View Projects</Button>
-          <Button href="/contact" variant="secondary">
+          <Button href="/projects" className="w-full sm:w-auto">
+            View Projects
+          </Button>
+          <Button href="/contact" variant="secondary" className="w-full sm:w-auto">
             Contact Me
           </Button>
         </div>

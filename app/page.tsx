@@ -1,5 +1,13 @@
 import { HeroSection } from "@/components/HeroSection";
 import { SectionPreviewGrid } from "@/components/home/SectionPreviewGrid";
+import { createMetadata } from "@/lib/metadata";
+
+export const metadata = createMetadata({
+  title: "Home",
+  description:
+    "Personal software portfolio of Spyridon Andreou featuring resume highlights, project work, and collaboration contact details.",
+  path: "/",
+});
 
 export default function Home() {
   const sectionPreviews = [

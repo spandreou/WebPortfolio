@@ -3,7 +3,11 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight, CircleDot } from "lucide-react";
 import Link from "next/link";
-import type { ProjectItem } from "@/lib/projects-data";
+import {
+  type ProjectItem,
+  projectCategoryLabels,
+  projectStatusLabels,
+} from "@/lib/projects-data";
 
 type ProjectCardProps = {
   project: ProjectItem;
@@ -31,13 +35,13 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {project.name}
           </h3>
           <p className="mt-1 text-xs uppercase tracking-[0.18em] text-cyan-200/75">
-            {project.category}
+            {projectCategoryLabels[project.category]}
           </p>
         </div>
         <span
           className={`inline-flex items-center rounded-full border px-2.5 py-1 text-xs ${statusStyles[project.status]}`}
         >
-          {project.status}
+          {projectStatusLabels[project.status]}
         </span>
       </div>
 

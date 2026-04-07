@@ -18,6 +18,22 @@ export type ProjectItem = {
   status: "completed" | "in-progress" | "concept";
 };
 
+export const projectCategoryLabels: Record<ProjectItem["category"], string> = {
+  web: "Web",
+  backend: "Backend",
+  data: "Data",
+  ai: "AI",
+  automation: "Automation",
+  tools: "Tools",
+  systems: "Systems",
+};
+
+export const projectStatusLabels: Record<ProjectItem["status"], string> = {
+  completed: "Completed",
+  "in-progress": "In Progress",
+  concept: "Concept",
+};
+
 export const projectsData: ProjectItem[] = [
   {
     name: "Task Manager API",

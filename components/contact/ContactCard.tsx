@@ -32,6 +32,7 @@ export function ContactCard({ item, index }: ContactCardProps) {
             href={item.href}
             target={item.href.startsWith("http") ? "_blank" : undefined}
             rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+            aria-label={`${item.title}: ${item.value}`}
             className="text-sm text-cyan-100 transition hover:text-cyan-50 sm:text-base"
           >
             {item.value}

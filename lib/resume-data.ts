@@ -5,6 +5,7 @@ export type ResumeData = {
     location: string;
     email: string;
     phone?: string;
+    dateOfBirth?: string;
     summary: string;
   };
   links: {
@@ -50,117 +51,128 @@ export type ResumeData = {
 export const resumeData: ResumeData = {
   personal: {
     fullName: "Spyridon Andreou",
-    title: "Digital Systems Undergraduate - Software & AI Projects",
-    location: "Larisa and Thebes, Greece",
+    title: "Digital Systems Undergraduate",
+    location: "Larisa / Thebes, Greece",
     email: "spyridonandreou04@gmail.com",
     phone: "+30 6945052118",
+    dateOfBirth: "12/02/2004",
     summary:
-      "Third-year Digital Systems undergraduate focused on software engineering, web technologies, and practical AI-assisted workflows. I build structured, reliable projects with clear architecture and a strong focus on real-world usability.",
+      "Third-year Digital Systems undergraduate at the University of Thessaly, seeking an internship with strong prospects for long-term employment as a Junior Developer or Systems Engineer. Military obligations completed through service in the Hellenic Special Forces, bringing discipline, reliability, adaptability, and the ability to perform effectively under pressure. Strong interest in software development, web technologies, and IT systems, with hands-on familiarity in programming, databases, and modern AI-assisted development workflows for faster problem-solving and productivity.",
   },
   links: {
     github: "https://github.com/spandreou",
   },
   skills: {
-    frontend: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "Tailwind CSS",
-      "Framer Motion",
-      "Responsive UI",
-    ],
-    backend: [
-      "Node.js",
-      "Express",
-      "REST API Design",
-      "Authentication",
-      "Validation",
-      "Service Architecture",
-    ],
-    databases: ["PostgreSQL", "MongoDB", "Redis", "Prisma", "SQL Optimization"],
-    devtools: ["Git", "GitHub Actions", "Docker", "Postman", "ESLint", "CI/CD"],
+    frontend: ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Tailwind CSS"],
+    backend: ["Python", "Java", "C", "C#", "PHP"],
+    databases: ["SQL", "MySQL"],
+    devtools: ["Git", "GitHub", "Vite", "Wireshark", "MATLAB", "Microsoft Office"],
     ai: [
-      "Prompt Engineering",
-      "LLM Integration",
-      "RAG Basics",
-      "Automation Workflows",
-      "Model Evaluation",
+      "AI-Assisted Development",
+      "ChatGPT",
+      "Gemini",
+      "Claude",
+      "Codex",
     ],
-    cloud: ["Vercel", "Render", "Supabase", "Neon", "Environment Management"],
-    other: ["Problem Solving", "Technical Writing", "Team Collaboration", "Agile"],
+    cloud: ["Microsoft Azure"],
+    other: ["Power BI", "Responsive Web Development"],
   },
   education: [
     {
-      institution: "University of Piraeus",
-      degree: "BSc in Informatics and Digital Systems",
+      institution: "University of Thessaly",
+      degree: "BSc in Digital Systems",
       period: "2022 - Present",
       details: [
-        "Core focus on software engineering, databases, and intelligent systems.",
-        "Coursework includes algorithms, distributed systems, and machine learning fundamentals.",
-      ],
-    },
-    {
-      institution: "Open Online Programs",
-      degree: "Continuous Learning Path in Web Engineering",
-      period: "2023 - Present",
-      details: [
-        "Advanced frontend architecture and scalable backend design practices.",
+        "Third-year undergraduate student.",
+        "Focus on software development, web technologies, databases, and digital systems.",
       ],
     },
   ],
   experience: [
     {
-      role: "Freelance Full-Stack Developer",
-      company: "Independent Projects",
-      period: "2024 - Present",
+      role: "Special Forces",
+      company: "Hellenic Armed Forces",
+      period: "Completed Military Service",
       description: [
-        "Built responsive web applications with reusable component systems and clean UI foundations.",
-        "Developed backend endpoints and data models for student and small business use-cases.",
-        "Collaborated with clients to translate requirements into production-ready iterations.",
+        "Operated effectively in high-pressure and demanding environments requiring discipline, precision, and rapid decision-making.",
+        "Strengthened teamwork, responsibility, and execution under strict procedures and timelines.",
+        "Developed resilience, adaptability, and reliability in mission-critical situations.",
       ],
     },
     {
-      role: "Software Engineering Student Contributor",
-      company: "Academic + Personal Labs",
-      period: "2023 - Present",
+      role: "Gas Station Employee",
+      period: "Date not specified",
       description: [
-        "Implemented coursework and side projects focused on APIs, data pipelines, and automation.",
-        "Experimented with AI-assisted workflows and evaluation patterns for practical tools.",
+        "Built strong customer service and communication skills through daily interaction with customers.",
+        "Managed responsibilities accurately in a fast-paced working environment.",
+        "Demonstrated consistency, reliability, and attention to operational procedures.",
       ],
     },
   ],
   projects: [
     {
-      name: "Task Manager API",
+      name: "EscapeReallity",
       description:
-        "REST API project for organizing tasks with clear endpoint and data structure design.",
-      technologies: ["Python", "REST APIs", "SQL"],
-      link: "https://github.com/spandreou/task-manager-api",
+        "Web project focused on interactive user flow and front-end structure.",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      link: "https://github.com/spandreou/EscapeReallity",
     },
     {
       name: "UsedCars",
       description:
-        "Full-stack learning project for managing and presenting used-car listings.",
+        "Web application for used-car listings with core CRUD and search-oriented functionality.",
       technologies: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
       link: "https://github.com/spandreou/UsedCars",
+    },
+    {
+      name: "task-manager-api",
+      description:
+        "Backend API project for task management and workflow organization.",
+      technologies: ["Python", "SQL"],
+      link: "https://github.com/spandreou/task-manager-api",
+    },
+    {
+      name: "RealEstateAnalytics",
+      description:
+        "Analytics-focused project for processing and visualizing real-estate datasets.",
+      technologies: ["Python", "SQL", "Power BI"],
+      link: "https://github.com/spandreou/RealEstateAnalytics",
+    },
+    {
+      name: "Geo-Data-Processing-Tool",
+      description:
+        "Data-processing tool for geospatial datasets and technical analysis workflows.",
+      technologies: ["Python", "MATLAB"],
+      link: "https://github.com/spandreou/Geo-Data-Processing-Tool",
+    },
+    {
+      name: "GasStationProject",
+      description:
+        "Software project around gas station operations and process organization.",
+      technologies: ["Java", "SQL"],
+      link: "https://github.com/spandreou/GasStationProject",
+    },
+    {
+      name: "InvisibleAI",
+      description:
+        "AI-oriented project exploring real-time assistant-style workflows.",
+      technologies: ["Python", "ChatGPT", "Gemini", "Claude", "Codex"],
+      link: "https://github.com/spandreou/InvisibleAI",
     },
   ],
   certifications: [
     {
-      name: "Foundations of Cloud Computing",
-      issuer: "Coursera",
-      year: "2024",
+      name: "Certificate of Proficiency in English (C2)",
+      issuer: "ESB",
     },
     {
-      name: "Relational Database Design",
-      issuer: "edX",
-      year: "2023",
+      name: "Word & Excel Diploma",
     },
     {
-      name: "Introduction to Machine Learning",
-      issuer: "Udemy",
-      year: "2023",
+      name: "Univators 2.0: Skilling Future Digital Innovators - Certificate of Completion (Machine Learning & Artificial Intelligence, 18 hours)",
+      issuer: "Code.Hub",
+      year: "2025",
     },
   ],
-  languages: ["Greek (Native)", "English (Professional Working Proficiency)"],
+  languages: ["Greek - Native", "English - C2 Proficiency"],
 };

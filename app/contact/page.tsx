@@ -3,11 +3,16 @@ import { Button } from "@/components/Button";
 import { ContactCard } from "@/components/contact/ContactCard";
 import { ContactHero } from "@/components/contact/ContactHero";
 import { SocialLinksPanel } from "@/components/contact/SocialLinksPanel";
+import { createMetadata } from "@/lib/metadata";
 import { contactData } from "@/lib/contact-data";
 
 export const metadata: Metadata = {
-  title: "Contact | SPYRIDON ANDREOU",
-  description: "Contact details and collaboration opportunities.",
+  ...createMetadata({
+    title: "Contact",
+    description:
+      "Reach out for internships, junior opportunities, and software collaboration discussions.",
+    path: "/contact",
+  }),
 };
 
 export default function ContactPage() {
@@ -49,10 +54,14 @@ export default function ContactPage() {
             {contactData.cta.description}
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-            <Button href={contactData.cta.primaryHref}>
+            <Button href={contactData.cta.primaryHref} className="w-full sm:w-auto">
               {contactData.cta.primaryLabel}
             </Button>
-            <Button href={contactData.cta.secondaryHref} variant="secondary">
+            <Button
+              href={contactData.cta.secondaryHref}
+              variant="secondary"
+              className="w-full sm:w-auto"
+            >
               {contactData.cta.secondaryLabel}
             </Button>
           </div>

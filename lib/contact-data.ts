@@ -1,3 +1,6 @@
+import { resumeData } from "@/lib/resume-data";
+import { siteConfig } from "@/lib/site-config";
+
 export type ContactCardItem = {
   id: "email" | "github" | "linkedin" | "location" | "cv";
   title: string;
@@ -37,47 +40,50 @@ export const contactData: ContactData = {
     {
       id: "email",
       title: "Email",
-      value: "spyridonandreou04@gmail.com",
-      href: "mailto:spyridonandreou04@gmail.com",
+      value: siteConfig.email,
+      href: `mailto:${siteConfig.email}`,
       helperText: "Best channel for internship and role discussions.",
     },
     {
       id: "github",
       title: "GitHub",
       value: "github.com/spandreou",
-      href: "https://github.com/spandreou",
+      href: siteConfig.links.github,
       helperText: "Code repositories and project implementations.",
     },
     {
       id: "linkedin",
       title: "LinkedIn",
-      value: "Profile coming soon",
-      helperText: "LinkedIn profile will be added soon.",
+      value: resumeData.links.linkedin ? "linkedin.com profile" : "Available on request",
+      href: resumeData.links.linkedin,
+      helperText: resumeData.links.linkedin
+        ? "Professional background and experience highlights."
+        : "LinkedIn profile can be shared during conversation.",
     },
     {
       id: "location",
       title: "Location",
-      value: "Larisa and Thebes, Greece",
+      value: siteConfig.location,
       helperText: "Open to on-site, hybrid, and remote collaboration.",
     },
     {
       id: "cv",
       title: "Resume PDF",
       value: "Download CV",
-      href: "/Spyridon_Andreou_CV.pdf",
+      href: siteConfig.links.cv,
       helperText: "Latest resume snapshot in PDF format.",
     },
   ],
   socialLinks: [
-    { name: "GitHub", href: "https://github.com/spandreou" },
-    { name: "Email", href: "mailto:spyridonandreou04@gmail.com" },
+    { name: "GitHub", href: siteConfig.links.github },
+    { name: "Email", href: `mailto:${siteConfig.email}` },
   ],
   cta: {
     title: "Interested in Collaborating?",
     description:
       "If you are hiring for internships or junior software roles, I would be glad to discuss how I can contribute.",
     primaryLabel: "Send Email",
-    primaryHref: "mailto:spyridonandreou04@gmail.com",
+    primaryHref: `mailto:${siteConfig.email}`,
     secondaryLabel: "View Resume",
     secondaryHref: "/resume",
   },
