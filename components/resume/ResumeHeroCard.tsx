@@ -6,6 +6,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { TargetFrame } from "@/components/TargetFrame";
 import type { ResumeData } from "@/lib/resume-data";
+import { siteConfig } from "@/lib/site-config";
 
 type ResumeHeroCardProps = {
   personal: ResumeData["personal"];
@@ -79,7 +80,7 @@ export function ResumeHeroCard({ personal, links }: ResumeHeroCardProps) {
             />
           ) : null}
           <Link
-            href="/Spyridon_Andreou_CV1.pdf"
+            href={siteConfig.links.cv}
             download
             className="inline-flex items-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-300/15 px-4 py-2.5 text-sm font-medium text-cyan-100 transition hover:border-cyan-100/70 hover:bg-cyan-300/25 hover:text-white"
           >
