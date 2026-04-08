@@ -50,7 +50,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
       </div>
 
       {filteredProjects.length === 0 ? (
-        <p className="rounded-2xl border border-cyan-300/18 bg-slate-950/55 px-4 py-3 text-sm text-slate-300/80">
+        <p className="content-card rounded-2xl px-4 py-3 text-sm text-slate-300/80">
           No projects match the selected filters.
         </p>
       ) : null}

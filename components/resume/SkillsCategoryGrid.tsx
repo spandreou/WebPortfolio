@@ -35,8 +35,7 @@ export function SkillsCategoryGrid({ skills }: SkillsCategoryGridProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.45, delay: index * 0.04, ease: "easeOut" }}
-          whileHover={{ y: -3 }}
-          className="glass-panel rounded-2xl p-5 sm:p-6"
+          className="content-card content-card-interactive rounded-2xl p-5 sm:p-6"
         >
           <h3 className="text-sm font-semibold tracking-wide text-cyan-100 sm:text-base">
             {entry.label}

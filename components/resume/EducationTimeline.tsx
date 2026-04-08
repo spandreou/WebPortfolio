@@ -20,7 +20,7 @@ export function EducationTimeline({ education }: EducationTimelineProps) {
           className="relative"
         >
           <span className="absolute -left-[1.85rem] top-7 h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.72)] sm:-left-[2.35rem]" />
-          <article className="glass-panel rounded-2xl p-5 sm:p-6">
+          <article className="content-card content-card-interactive rounded-2xl p-5 sm:p-6">
             <p className="font-mono text-[0.64rem] tracking-[0.24em] text-cyan-300/80 sm:text-xs">
               {item.period}
             </p>

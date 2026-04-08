@@ -17,8 +17,7 @@ export function ContactCard({ item, index }: ContactCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.45, delay: index * 0.04, ease: "easeOut" }}
-      whileHover={{ y: -3 }}
-      className="glass-panel rounded-2xl p-5 sm:p-6"
+      className="content-card content-card-interactive rounded-2xl p-5 sm:p-6"
     >
       <div className="flex items-center gap-2 text-cyan-100">
         <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-cyan-300/25 bg-slate-950/70">
@@ -33,7 +32,7 @@ export function ContactCard({ item, index }: ContactCardProps) {
             target={item.href.startsWith("http") ? "_blank" : undefined}
             rel={item.href.startsWith("http") ? "noreferrer" : undefined}
             aria-label={`${item.title}: ${item.value}`}
-            className="text-sm text-cyan-100 transition hover:text-cyan-50 sm:text-base"
+            className="content-card-link text-sm text-cyan-100 sm:text-base"
           >
             {item.value}
           </Link>

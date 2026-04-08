@@ -20,8 +20,7 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      whileHover={{ y: -4 }}
-      className="glass-panel rounded-3xl p-6 sm:p-8"
+      className="content-card content-card-interactive rounded-3xl p-6 sm:p-8"
     >
       <p className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/12 px-3 py-1.5 text-xs text-cyan-100">
         <Sparkles size={14} />
@@ -56,10 +55,10 @@ export function FeaturedProjectCard({ project }: FeaturedProjectCardProps) {
           href={project.githubUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-slate-950/75 px-4 py-2.5 text-sm text-cyan-100 transition hover:border-cyan-200/60 hover:text-cyan-50"
+          className="content-card-link inline-flex items-center gap-2 rounded-full border border-cyan-300/35 bg-slate-950/75 px-4 py-2.5 text-sm text-cyan-100"
         >
           View Repository
-          <ArrowUpRight size={16} />
+          <ArrowUpRight size={16} className="card-link-icon" />
         </Link>
       </div>
     </motion.article>

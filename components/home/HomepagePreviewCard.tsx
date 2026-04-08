@@ -25,10 +25,9 @@ export function HomepagePreviewCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.45, delay: index * 0.05, ease: "easeOut" }}
-      whileHover={{ y: -3 }}
-      className="glass-panel rounded-2xl p-5 sm:p-6"
+      className="content-card content-card-interactive rounded-2xl p-5 sm:p-6"
     >
-      <p className="font-mono text-[0.64rem] tracking-[0.3em] text-cyan-300/80">
+      <p className="font-mono text-[0.64rem] tracking-[0.28em] text-cyan-200/80">
         {label}
       </p>
       <h3 className="mt-3 text-xl font-semibold tracking-tight text-slate-100">
@@ -37,10 +36,10 @@ export function HomepagePreviewCard({
       <p className="mt-2 text-sm leading-relaxed text-slate-300/80">{copy}</p>
       <Link
         href={href}
-        className="mt-5 inline-flex items-center gap-2 text-sm text-cyan-100 transition hover:text-cyan-50"
+        className="content-card-link mt-5 inline-flex items-center gap-2 text-sm text-cyan-100"
       >
         Explore
-        <ArrowUpRight size={15} />
+        <ArrowUpRight size={15} className="card-link-icon" />
       </Link>
     </motion.article>
   );

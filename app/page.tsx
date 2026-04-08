@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/HeroSection";
+import { ScrollReveal } from "@/components/ScrollReveal";
 import { SectionPreviewGrid } from "@/components/home/SectionPreviewGrid";
 import { createMetadata } from "@/lib/metadata";
 
@@ -37,7 +38,9 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <SectionPreviewGrid items={sectionPreviews} />
+      <ScrollReveal y={20} duration={0.65}>
+        <SectionPreviewGrid items={sectionPreviews} />
+      </ScrollReveal>
     </>
   );
 }

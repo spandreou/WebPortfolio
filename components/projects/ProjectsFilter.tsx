@@ -33,7 +33,7 @@ export function ProjectsFilter({
   onStatusChange,
 }: ProjectsFilterProps) {
   return (
-    <div className="glass-panel rounded-2xl p-4 sm:p-5">
+    <div className="content-card rounded-2xl p-4 sm:p-5">
       <div>
         <p className="text-xs uppercase tracking-[0.2em] text-cyan-200/75">
           Filter by Category
