@@ -14,8 +14,9 @@ export function HeroSection() {
       className="relative flex min-h-[calc(100svh-var(--navbar-height))] items-center justify-center py-10 sm:py-16"
     >
       <div className="absolute left-1/2 top-1/2 -z-10 h-[24rem] w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/14 blur-3xl sm:h-[34rem] sm:w-[34rem]" />
+      <div aria-hidden="true" className="noise-overlay pointer-events-none absolute inset-0 z-0" />
 
-      <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+      <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
         <motion.p
           className="font-mono text-[0.7rem] tracking-[0.34em] text-cyan-300/85 sm:text-xs"
           initial={{ opacity: 0, y: 20 }}
