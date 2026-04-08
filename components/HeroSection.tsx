@@ -32,7 +32,7 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         >
           <TargetFrame>
-            <h1 className="hero-title bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-3xl font-semibold tracking-tight text-transparent drop-shadow-[0_0_14px_rgba(34,211,238,0.3)] sm:text-5xl lg:text-6xl">
+            <h1 className="hero-title bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400 bg-clip-text text-3xl font-semibold tracking-[0.07em] text-transparent subpixel-antialiased sm:text-5xl lg:text-6xl">
               {siteConfig.name.toUpperCase()}
             </h1>
           </TargetFrame>

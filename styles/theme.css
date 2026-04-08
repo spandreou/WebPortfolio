@@ -44,68 +44,107 @@
 }
 
 .hero-title {
-  text-shadow: 0 0 24px rgba(34, 211, 238, 0.35);
+  text-shadow:
+    0 0 10px rgba(125, 211, 252, 0.22),
+    0 0 22px rgba(34, 211, 238, 0.14);
+  transition: text-shadow 320ms ease-out;
+}
+
+.target-frame:hover .hero-title {
+  text-shadow:
+    0 0 14px rgba(125, 211, 252, 0.3),
+    0 0 28px rgba(34, 211, 238, 0.2);
+}
+
+.target-frame {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-opacity: 0;
+}
+
+.target-cursor-glow {
+  background: radial-gradient(
+    210px circle at var(--glow-x) var(--glow-y),
+    rgba(56, 189, 248, 0.2),
+    rgba(45, 212, 191, 0.12) 36%,
+    transparent 72%
+  );
+  opacity: var(--glow-opacity);
+  transition: opacity 320ms ease;
+  will-change: opacity, transform;
 }
 
 .target-scanline {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(103, 232, 249, 0.95),
+    rgba(34, 211, 238, 0.18),
+    rgba(125, 211, 252, 0.42),
+    rgba(34, 211, 238, 0.18),
     transparent
   );
-  animation: scanline 4.4s ease-in-out infinite;
+  filter: blur(0.6px);
+  animation: scanline 5.8s linear infinite;
 }
 
 .frame-corner {
   position: absolute;
-  height: 14px;
-  width: 14px;
-  border-color: rgba(103, 232, 249, 0.9);
+  height: 16px;
+  width: 16px;
+  border-color: rgba(125, 211, 252, 0.9);
+  filter: drop-shadow(0 0 9px rgba(34, 211, 238, 0.3));
+  opacity: 0.9;
+  transition: all 0.45s ease-out;
+}
+
+.target-frame:hover .frame-corner {
+  border-color: rgba(165, 243, 252, 0.98);
+  filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.36));
+  opacity: 1;
 }
 
 .corner-tl {
-  left: 12px;
-  top: 12px;
-  border-left-width: 2px;
-  border-top-width: 2px;
+  left: 10px;
+  top: 10px;
+  border-left-width: 1.5px;
+  border-top-width: 1.5px;
 }
 
 .corner-tr {
-  right: 12px;
-  top: 12px;
-  border-right-width: 2px;
-  border-top-width: 2px;
+  right: 10px;
+  top: 10px;
+  border-right-width: 1.5px;
+  border-top-width: 1.5px;
 }
 
 .corner-bl {
-  bottom: 12px;
-  left: 12px;
-  border-bottom-width: 2px;
-  border-left-width: 2px;
+  bottom: 10px;
+  left: 10px;
+  border-bottom-width: 1.5px;
+  border-left-width: 1.5px;
 }
 
 .corner-br {
-  bottom: 12px;
-  right: 12px;
-  border-bottom-width: 2px;
-  border-right-width: 2px;
+  bottom: 10px;
+  right: 10px;
+  border-bottom-width: 1.5px;
+  border-right-width: 1.5px;
 }
 
 @keyframes scanline {
-  0%,
-  100% {
+  0% {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateX(-130%);
   }
-  44% {
-    opacity: 0.85;
+  12% {
+    opacity: 0.15;
   }
   50% {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 0.34;
+    transform: translateX(125%);
   }
-  56% {
-    opacity: 0.85;
+  100% {
+    opacity: 0;
+    transform: translateX(125%);
   }
 }
