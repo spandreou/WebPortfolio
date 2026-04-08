@@ -8,7 +8,7 @@ export const siteConfig = {
   links: {
     github: "https://github.com/spandreou",
     linkedin: "",
-    cv: "/Spyridon_Andreou_CV.pdf",
+    cv: "/Spyridon_Andreou_CV1.pdf",
   },
   keywords: [
     "Spyridon Andreou",

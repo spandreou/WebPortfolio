@@ -51,7 +51,7 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
 
       {filteredProjects.length === 0 ? (
         <p className="content-card rounded-2xl px-4 py-3 text-sm text-slate-300/80">
-          No projects match the selected filters.
+          No projects match the selected filters. Try broadening category or status.
         </p>
       ) : null}
     </div>

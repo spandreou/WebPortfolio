@@ -18,23 +18,23 @@ export function ProjectsHero({
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="glass-panel rounded-3xl p-6 sm:p-8 lg:p-10"
+        className="content-card rounded-3xl p-6 sm:p-8 lg:p-10"
       >
         <p className="font-mono text-[0.64rem] tracking-[0.3em] text-cyan-300/75 sm:text-xs">
           PORTFOLIO PROJECTS
         </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-100 sm:text-5xl">
+        <h1 className="mt-3 bg-gradient-to-r from-sky-300 via-cyan-200 to-blue-300 bg-clip-text text-3xl font-semibold tracking-tight text-transparent sm:text-5xl">
           Product-Driven Builds
         </h1>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-300/85 sm:text-base">
           A curated set of software projects focused on clean architecture,
-          practical engineering, and polished user-facing outcomes.
+          practical engineering, and polished user-facing outcomes with clear product value.
         </p>
         <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-200/90">
-          <span className="rounded-full border border-cyan-300/25 bg-slate-950/60 px-3 py-1.5">
+          <span className="rounded-full border border-cyan-300/25 bg-slate-950/65 px-3 py-1.5">
             {totalProjects} Total Projects
           </span>
-          <span className="rounded-full border border-cyan-300/25 bg-slate-950/60 px-3 py-1.5">
+          <span className="rounded-full border border-cyan-300/25 bg-slate-950/65 px-3 py-1.5">
             {featuredProjects} Featured
           </span>
         </div>

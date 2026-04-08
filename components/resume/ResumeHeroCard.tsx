@@ -79,7 +79,7 @@ export function ResumeHeroCard({ personal, links }: ResumeHeroCardProps) {
             />
           ) : null}
           <Link
-            href="/Spyridon_Andreou_CV.pdf"
+            href="/Spyridon_Andreou_CV1.pdf"
             download
             className="inline-flex items-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-300/15 px-4 py-2.5 text-sm font-medium text-cyan-100 transition hover:border-cyan-100/70 hover:bg-cyan-300/25 hover:text-white"
           >
