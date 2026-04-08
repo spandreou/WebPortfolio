@@ -16,12 +16,12 @@ export function ContactHero({ title, subtitle, availability }: ContactHeroProps)
         initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="glass-panel rounded-3xl p-6 sm:p-8 lg:p-10"
+        className="content-card rounded-3xl p-6 sm:p-8 lg:p-10"
       >
         <p className="font-mono text-[0.64rem] tracking-[0.3em] text-cyan-300/75 sm:text-xs">
           CONTACT
         </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-slate-100 sm:text-5xl">
+        <h1 className="mt-3 bg-gradient-to-r from-slate-100 via-cyan-100 to-sky-200 bg-clip-text text-3xl font-semibold tracking-tight text-transparent sm:text-5xl">
           {title}
         </h1>
         <p className="mt-4 max-w-3xl text-base leading-relaxed text-cyan-100/90 sm:text-lg">

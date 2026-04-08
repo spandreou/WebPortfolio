@@ -21,14 +21,14 @@ export function SocialLinksPanel({ links }: SocialLinksPanelProps) {
       <p className="font-mono text-[0.64rem] tracking-[0.28em] text-cyan-300/75 sm:text-xs">
         SOCIAL LINKS
       </p>
-      <ul className="mt-4 space-y-2">
+      <ul className="mt-4 space-y-2.5">
         {links.map((link) => (
           <li key={link.name}>
             <Link
               href={link.href}
               target={link.href.startsWith("http") ? "_blank" : undefined}
               rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-              className="content-card-link inline-flex items-center gap-2 text-sm text-slate-200 sm:text-base"
+              className="content-card-link inline-flex w-full items-center justify-between gap-2 rounded-xl border border-transparent bg-slate-950/34 px-3 py-2 text-sm text-slate-200 hover:border-cyan-300/24 hover:bg-cyan-300/[0.07] sm:text-base"
             >
               {link.name}
               <ArrowUpRight size={15} className="card-link-icon" />
