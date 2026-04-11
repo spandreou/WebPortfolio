@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Spyridon Andreou Portfolio
+
+Premium personal portfolio built with Next.js 15, focused on a futuristic product-style UI and a recruiter-friendly presentation of resume, projects, and contact channels.
+
+## Purpose
+
+This project is designed to:
+- Present a clear professional profile
+- Showcase technical projects with strong scannability
+- Provide direct, trustworthy contact options for internships and junior roles
+
+The goal is not a generic template, but a polished, production-ready personal website.
+
+## Live Sections
+
+- `/` Home with high-impact hero and navigation flow
+- `/resume` Structured CV experience from local typed data
+- `/projects` Curated project showcase with featured and full portfolio views
+- `/contact` Final conversion section for collaboration and hiring outreach
+
+## Tech Stack
+
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+- OGL (for background shader effect)
+
+## Project Structure
+
+```text
+.
++-- app/
+|   +-- layout.tsx
+|   +-- page.tsx
+|   +-- resume/page.tsx
+|   +-- projects/page.tsx
+|   `-- contact/page.tsx
++-- components/
+|   +-- Navbar.tsx
+|   +-- HeroSection.tsx
+|   +-- BackgroundEffect.tsx
+|   +-- Iridescence.tsx
+|   +-- TargetFrame.tsx
+|   +-- ScrollReveal.tsx
+|   +-- home/
+|   +-- resume/
+|   +-- projects/
+|   `-- contact/
++-- lib/
+|   +-- site-config.ts
+|   +-- metadata.ts
+|   +-- resume-data.ts
+|   +-- projects-data.ts
+|   +-- contact-data.ts
+|   `-- utils.ts
++-- public/
+|   `-- Spyridon_Andreou_CV1.pdf
++-- styles/
+|   `-- theme.css
++-- app/globals.css
++-- package.json
+`-- README.md
+```
+
+## Data Architecture
+
+Content is intentionally local and typed for reliability and maintainability:
+
+- `lib/resume-data.ts`: personal profile, skills, education, experience, certifications, languages
+- `lib/projects-data.ts`: project catalog, categories, status, featured flags, links
+- `lib/contact-data.ts`: contact cards, social links, CTA content
+- `lib/site-config.ts`: global identity and shared links (email, GitHub, CV, metadata defaults)
+
+## Design System Highlights
+
+- Dark futuristic visual identity
+- Glassmorphism surfaces with restrained cyan/blue accent
+- Subtle glow and cinematic grain for depth
+- Scroll-reveal and micro-interactions tuned for clarity (not visual noise)
+- Fully responsive layout across mobile, tablet, and desktop
 
 ## Getting Started
 
-First, run the development server:
+```bash
+npm install
+npm run dev
+```
+
+Open: `http://localhost:3000`
+
+## Available Scripts
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run build
+npm run start
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## CV Download
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The resume download button points to:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `public/Spyridon_Andreou_CV1.pdf`
 
-## Learn More
+If you want to replace the CV, keep the same filename or update `siteConfig.links.cv` in `lib/site-config.ts`.
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Optimized for Vercel deployment.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+Set `NEXT_PUBLIC_SITE_URL` in production for canonical/metadata consistency.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Current Scope
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Included:
+- UI foundation and premium styling
+- Resume, Projects, Contact experiences
+- Typed local data architecture
+
+Not included yet:
+- GitHub API integration
+- Backend contact form submission
+- PDF parsing or upload workflows
+- Terminal/admin tooling
