@@ -12,7 +12,7 @@ export const siteConfig = {
   },
   keywords: [
     "Spyridon Andreou",
-    "Full Stack Developer"
+    "Full Stack Developer",
     "Software Engineer Portfolio",
     "Digital Systems",
     "Backend Development",
