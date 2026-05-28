@@ -35,6 +35,31 @@ export const projectStatusLabels: Record<ProjectItem["status"], string> = {
 };
 
 export const projectsData: ProjectItem[] = [
+{
+  name: "MunicipalPoliceProject",
+  slug: "municipal-police-project",
+  shortDescription:
+    "Desktop-first municipal enforcement system for managing violations, offenders, signatures, and operational workflows.",
+  fullDescription:
+    "A real-world full-stack desktop/admin project built around municipal police workflows, including authentication, violation and offender management, audit logging, realtime updates, diagnostics, and PostgreSQL-backed data handling.",
+  technologies: [
+    "NestJS",
+    "Prisma ORM",
+    "PostgreSQL",
+    "Tauri",
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "React Query",
+    "Socket.IO",
+    "Docker",
+    "Playwright",
+  ],
+  category: "systems",
+  githubUrl: "https://github.com/spandreou/MunicipalPoliceProject",
+  featured: true,
+  status: "in-progress",
+},
   {
     name: "Task Manager API",
     slug: "task-manager-api",
