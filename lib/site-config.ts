@@ -8,10 +8,11 @@ export const siteConfig = {
   links: {
     github: "https://github.com/spandreou",
     linkedin: "",
-    cv: "/Spyridon_Andreou_CV1.pdf",
+    cv: "/Spyridon_Andreou_CV1_2026.pdf",
   },
   keywords: [
     "Spyridon Andreou",
+    "Full Stack Developer"
     "Software Engineer Portfolio",
     "Digital Systems",
     "Backend Development",
