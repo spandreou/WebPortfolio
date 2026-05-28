@@ -7,8 +7,8 @@ export const siteConfig = {
   location: "Larisa and Thebes, Greece",
   links: {
     github: "https://github.com/spandreou",
-    linkedin: "",
-    cv: "/Spyridon_Andreou_CV1_2026.pdf",
+    linkedin: "https://www.linkedin.com/in/spandreou",
+    cv: "/Spyridon_Andreou_CV_2026.pdf",
   },
   keywords: [
     "Spyridon Andreou",
