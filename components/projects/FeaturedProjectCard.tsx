@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowUpRight, CircleDot, Sparkles } from "lucide-react";
 import Link from "next/link";
 import {
@@ -26,11 +25,7 @@ export function FeaturedProjectCard({ project, className }: FeaturedProjectCardP
   const primaryLabel = project.liveUrl ? "View Demo" : "View Repository";
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+    <article
       className={cn(
         "content-card content-card-interactive project-card project-card-featured rounded-3xl p-6 sm:p-8",
         className,
@@ -97,6 +92,6 @@ export function FeaturedProjectCard({ project, className }: FeaturedProjectCardP
           </Link>
         ) : null}
       </div>
-    </motion.article>
+    </article>
   );
 }

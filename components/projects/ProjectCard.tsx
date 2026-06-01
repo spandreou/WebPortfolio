@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowUpRight, CircleDot } from "lucide-react";
 import Link from "next/link";
 import {
@@ -24,11 +23,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const primaryLabel = project.liveUrl ? "View Demo" : "View Repository";
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.45, ease: "easeOut" }}
+    <article
       className="content-card content-card-interactive project-card flex h-full flex-col rounded-2xl p-5 sm:p-6"
     >
       <div className="flex items-center justify-between gap-2">
@@ -91,6 +86,6 @@ export function ProjectCard({ project }: ProjectCardProps) {
           </Link>
         ) : null}
       </div>
-    </motion.article>
+    </article>
   );
 }
