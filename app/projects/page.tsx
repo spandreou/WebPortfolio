@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/Button";
-import { FeaturedProjectCard } from "@/components/projects/FeaturedProjectCard";
 import { ProjectsGrid } from "@/components/projects/ProjectsGrid";
 import { ProjectsHero } from "@/components/projects/ProjectsHero";
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -25,30 +24,6 @@ export default function ProjectsPage() {
         totalProjects={projectsData.length}
         featuredProjects={featuredProjects.length}
       />
-
-      <section>
-        <p className="font-mono text-[0.64rem] tracking-[0.3em] text-cyan-300/75 sm:text-xs">
-          FEATURED
-        </p>
-        <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-100 sm:text-3xl">
-          Highlighted Work
-        </h2>
-        <p className="mt-2 max-w-3xl text-sm text-slate-300/80 sm:text-base">
-          Projects selected for strongest product relevance and engineering clarity.
-        </p>
-        <p className="mt-3 text-xs uppercase tracking-[0.18em] text-cyan-200/68">
-          Top projects with the clearest end-user impact and implementation maturity.
-        </p>
-        <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          {featuredProjects.map((project, index) => (
-            <FeaturedProjectCard
-              key={project.slug}
-              project={project}
-              className={index === 0 && featuredProjects.length > 1 ? "lg:col-span-2" : undefined}
-            />
-          ))}
-        </div>
-      </section>
 
       <section>
         <p className="font-mono text-[0.64rem] tracking-[0.3em] text-cyan-300/75 sm:text-xs">
