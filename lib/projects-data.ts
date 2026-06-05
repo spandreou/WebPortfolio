@@ -36,8 +36,8 @@ export const projectStatusLabels: Record<ProjectItem["status"], string> = {
 
 export const projectsData: ProjectItem[] = [
   {
-    name: "MunicipalPoliceProject",
-    slug: "municipal-police-project",
+    name: "MunicipalPolice",
+    slug: "municipal-police",
     shortDescription:
       "Desktop-first municipal enforcement system for managing violations, offenders, signatures, and operational workflows.",
     fullDescription:
@@ -89,8 +89,8 @@ export const projectsData: ProjectItem[] = [
     status: "in-progress",
   },
   {
-    name: "GasStationProject",
-    slug: "gas-station-project",
+    name: "GasStation",
+    slug: "gas-station",
     shortDescription:
       "Demo-ready gas station shift management dashboard with weekly/monthly scheduling and staff operations.",
     fullDescription:

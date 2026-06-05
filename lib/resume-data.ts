@@ -190,7 +190,7 @@ export const resumeData: ResumeData = {
       link: "https://github.com/spandreou/Geo-Data-Processing-Tool",
     },
     {
-      name: "GasStationProject",
+      name: "GasStation",
       description:
         "Software project around gas station operations and process organization.",
       technologies: ["Java", "SQL"],
