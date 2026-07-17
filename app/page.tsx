@@ -2,11 +2,11 @@ import { HeroSection } from "@/components/HeroSection";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { SectionPreviewGrid } from "@/components/home/SectionPreviewGrid";
 import { createMetadata } from "@/lib/metadata";
+import { siteConfig } from "@/lib/site-config";
 
 export const metadata = createMetadata({
   title: "Home",
-  description:
-    "Personal software portfolio of Spyridon Andreou featuring resume highlights, project work, and collaboration contact details.",
+  description: siteConfig.description,
   path: "/",
 });
 
@@ -17,14 +17,14 @@ export default function Home() {
       title: "Resume",
       label: "PROFILE",
       href: "/resume",
-      copy: "Education, experience, skills, certifications, and core professional background.",
+      copy: "Full-stack background, AI automation skills, education, experience, and certifications.",
     },
     {
       id: "projects",
       title: "Projects",
       label: "BUILD",
       href: "/projects",
-      copy: "Featured technical projects with categories, status, and implementation details.",
+      copy: "Full-stack systems, intelligent integrations, automation workflows, and implementation details.",
     },
     {
       id: "contact",

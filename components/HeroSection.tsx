@@ -18,22 +18,29 @@ export function HeroSection() {
 
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
         <motion.p
-          className="font-mono text-[0.7rem] tracking-[0.34em] text-cyan-300/85 sm:text-xs"
+          className="max-w-full font-mono text-[0.62rem] tracking-[0.16em] text-cyan-300/85 sm:text-xs sm:tracking-[0.3em]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          JUNIOR FULL-STACK DEVELOPER
+          {siteConfig.professionalTitle.map((line, index) => (
+            <span
+              key={line}
+              className={index === 0 ? "block" : "mt-2 block text-cyan-100/80"}
+            >
+              {line.toUpperCase()}
+            </span>
+          ))}
         </motion.p>
 
         <motion.div
-          className="mt-6"
+          className="mt-6 w-full max-w-full"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         >
-          <TargetFrame>
-            <h1 className="hero-title bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400 bg-clip-text text-3xl font-semibold tracking-[0.07em] text-transparent subpixel-antialiased sm:text-5xl lg:text-6xl">
+          <TargetFrame className="w-full sm:w-auto">
+            <h1 className="hero-title whitespace-nowrap bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400 bg-clip-text text-xl font-semibold tracking-[0.04em] text-transparent subpixel-antialiased sm:text-5xl sm:tracking-[0.07em] lg:text-6xl">
               {siteConfig.name.toUpperCase()}
             </h1>
           </TargetFrame>
@@ -47,8 +54,7 @@ export function HeroSection() {
         >
           <div className="pointer-events-none absolute -inset-px -z-10 rounded-3xl bg-cyan-400/10 blur-2xl" />
           <p className="text-pretty text-base leading-relaxed text-slate-200/90 sm:text-lg">
-            Full-Stack Software Engineer building end-to-end web, API, and
-            self-hosted systems.
+            {siteConfig.heroDescription}
           </p>
 
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">

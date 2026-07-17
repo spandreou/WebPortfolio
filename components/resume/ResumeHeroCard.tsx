@@ -27,9 +27,9 @@ export function ResumeHeroCard({ personal, links }: ResumeHeroCardProps) {
           PROFESSIONAL PROFILE
         </p>
 
-        <div className="mt-4">
-          <TargetFrame>
-            <h1 className="hero-title text-3xl font-semibold tracking-tight text-slate-100 sm:text-5xl">
+        <div className="mt-4 max-w-full">
+          <TargetFrame className="w-full sm:w-auto">
+            <h1 className="hero-title whitespace-nowrap text-2xl font-semibold tracking-tight text-slate-100 sm:text-5xl">
               {personal.fullName}
             </h1>
           </TargetFrame>
@@ -57,9 +57,11 @@ export function ResumeHeroCard({ personal, links }: ResumeHeroCardProps) {
           ) : null}
         </div>
 
-        <p className="mt-6 max-w-4xl text-pretty leading-relaxed text-slate-200/90">
-          {personal.summary}
-        </p>
+        <div className="mt-6 max-w-4xl space-y-4 text-pretty leading-relaxed text-slate-200/90">
+          {personal.summary.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
 
         <div className="mt-7 flex flex-wrap gap-3">
           {links.github ? (

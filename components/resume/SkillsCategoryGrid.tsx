@@ -8,7 +8,7 @@ const categoryLabels: Record<keyof ResumeData["skills"], string> = {
   backend: "Backend",
   databases: "Databases",
   devtools: "Dev Tools",
-  ai: "AI / Automation",
+  ai: "AI & Automation",
   cloud: "Cloud / Platforms",
   other: "Other",
 };
