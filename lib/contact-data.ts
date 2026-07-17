@@ -33,9 +33,9 @@ export type ContactData = {
 export const contactData: ContactData = {
   heroTitle: "Let's Build Something Valuable",
   heroSubtitle:
-    "Open to internships, junior roles, and collaborative software projects.",
+    "Open to internships and entry-level full-stack software engineering roles.",
   availability:
-    "I am currently available for software engineering opportunities where I can contribute to backend systems, web applications, and AI-assisted product workflows.",
+    "I am currently available for opportunities where I can contribute to end-to-end applications, REST APIs, authentication, real-time features, testing, and production deployments.",
   cards: [
     {
       id: "email",
@@ -54,11 +54,9 @@ export const contactData: ContactData = {
     {
       id: "linkedin",
       title: "LinkedIn",
-      value: resumeData.links.linkedin ? "linkedin.com profile" : "Available on request",
+      value: "linkedin.com/in/spandreou",
       href: resumeData.links.linkedin,
-      helperText: resumeData.links.linkedin
-        ? "Professional background and experience highlights."
-        : "LinkedIn profile can be shared during conversation.",
+      helperText: "Professional background and experience highlights.",
     },
     {
       id: "location",
@@ -76,12 +74,13 @@ export const contactData: ContactData = {
   ],
   socialLinks: [
     { name: "GitHub", href: siteConfig.links.github },
+    { name: "LinkedIn", href: siteConfig.links.linkedin },
     { name: "Email", href: `mailto:${siteConfig.email}` },
   ],
   cta: {
     title: "Interested in Collaborating?",
     description:
-      "If you are hiring for internships or junior software roles, I would be glad to discuss how I can contribute.",
+      "If you are hiring for internships or entry-level full-stack roles, I would be glad to discuss how I can contribute.",
     primaryLabel: "Send Email",
     primaryHref: `mailto:${siteConfig.email}`,
     secondaryLabel: "View Resume",

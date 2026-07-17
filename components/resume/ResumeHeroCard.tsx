@@ -16,7 +16,7 @@ type ResumeHeroCardProps = {
 export function ResumeHeroCard({ personal, links }: ResumeHeroCardProps) {
   return (
     <section className="relative pt-4 sm:pt-8">
-      <div className="absolute left-1/2 top-1/2 -z-10 h-[25rem] w-[25rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-3xl" />
+      <div className="absolute left-1/2 top-1/2 -z-10 h-[25rem] w-[25rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-3xl" />
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -31,7 +31,7 @@ export default function Home() {
       title: "Contact",
       label: "CONNECT",
       href: "/contact",
-      copy: "Direct contact channels for internships, junior roles, and collaboration opportunities.",
+      copy: "Direct contact channels for internships, entry-level full-stack roles, and collaboration opportunities.",
     },
   ];
 
