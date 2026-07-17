@@ -69,29 +69,31 @@ export function FeaturedProjectCard({ project, className }: FeaturedProjectCardP
         ))}
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-2 border-t border-cyan-300/14 pt-5">
-        <Link
-          href={primaryHref}
-          target="_blank"
-          rel="noreferrer"
-          className="project-cta-primary inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm"
-        >
-          <CircleDot size={15} />
-          {primaryLabel}
-          <ArrowUpRight size={16} className="card-link-icon" />
-        </Link>
-        {project.liveUrl ? (
+      {primaryHref ? (
+        <div className="mt-6 flex flex-wrap gap-2 border-t border-cyan-300/14 pt-5">
           <Link
-            href={project.githubUrl}
+            href={primaryHref}
             target="_blank"
             rel="noreferrer"
-            className="project-cta-secondary inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm"
+            className="project-cta-primary inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm"
           >
-            Source Code
+            <CircleDot size={15} />
+            {primaryLabel}
             <ArrowUpRight size={16} className="card-link-icon" />
           </Link>
-        ) : null}
-      </div>
+          {project.liveUrl && project.githubUrl ? (
+            <Link
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="project-cta-secondary inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm"
+            >
+              Source Code
+              <ArrowUpRight size={16} className="card-link-icon" />
+            </Link>
+          ) : null}
+        </div>
+      ) : null}
     </article>
   );
 }

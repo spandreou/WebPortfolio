@@ -49,7 +49,7 @@ export default function ResumePage() {
         <section id="experience">
           <ResumeSectionHeading
             title="Experience"
-            subtitle="Hands-on work where architecture decisions and implementation quality translate into real outcomes."
+            subtitle="Additional experience that demonstrates discipline, reliability, adaptability, and consistent execution."
           />
           <ExperienceTimeline experience={resumeData.experience} />
         </section>
@@ -78,7 +78,7 @@ export default function ResumePage() {
           </h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300/85 sm:text-base">
             Continue to technical project highlights or reach out directly for internships
-            and junior opportunities.
+            and entry-level full-stack opportunities.
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Button href="/projects" className="w-full sm:w-auto">

@@ -23,7 +23,7 @@ export function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          FUTURE-DRIVEN SOFTWARE ENGINEER
+          JUNIOR FULL-STACK DEVELOPER
         </motion.p>
 
         <motion.div
@@ -47,7 +47,8 @@ export function HeroSection() {
         >
           <div className="pointer-events-none absolute -inset-px -z-10 rounded-3xl bg-cyan-400/10 blur-2xl" />
           <p className="text-pretty text-base leading-relaxed text-slate-200/90 sm:text-lg">
-            Digital Systems Undergraduate - Software &amp; AI Projects
+            Full-Stack Software Engineer building end-to-end web, API, and
+            self-hosted systems.
           </p>
 
           <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row">
