@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   ...createMetadata({
     title: "Resume",
     description:
-      "Professional resume overview covering education, experience, technical skills, and certifications.",
+      "Resume of Spyridon Andreou, a Junior Full-Stack Developer focused on AI automation, intelligent integrations, and end-to-end software delivery.",
     path: "/resume",
   }),
 };
@@ -29,7 +29,7 @@ export default function ResumePage() {
         <section id="skills">
           <ResumeSectionHeading
             title="Skills Matrix"
-            subtitle="Core technologies organized by domain to highlight practical depth and engineering focus."
+            subtitle="Core full-stack technologies, AI integration capabilities, automation workflows, and engineering tools organized by domain."
           />
           <SkillsCategoryGrid skills={resumeData.skills} />
         </section>

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   ...createMetadata({
     title: "Projects",
     description:
-      "Technical portfolio projects with featured work, categorized stack details, and current development status.",
+      "Full-stack portfolio projects covering web applications, backend systems, AI integrations, automation, and self-hosted infrastructure.",
     path: "/projects",
   }),
 };

@@ -1,3 +1,5 @@
+import { siteConfig } from "@/lib/site-config";
+
 export type ResumeData = {
   personal: {
     fullName: string;
@@ -6,7 +8,7 @@ export type ResumeData = {
     email: string;
     phone?: string;
     dateOfBirth?: string;
-    summary: string;
+    summary: string[];
   };
   links: {
     github?: string;
@@ -51,12 +53,14 @@ export type ResumeData = {
 export const resumeData: ResumeData = {
   personal: {
     fullName: "Spyridon Andreou",
-    title: "Junior Full-Stack Developer | Full-Stack Software Engineer",
+    title: siteConfig.professionalTitle.join(" | "),
     location: "Larisa / Thebes, Greece",
     email: "spyridonandreou04@gmail.com",
     phone: "+30 694 505 2118",
-    summary:
-      "Digital Systems undergraduate entering the final year at the University of Thessaly, seeking an internship or entry-level role as a Junior Full-Stack Developer or Full-Stack Software Engineer. Hands-on experience building and deploying end-to-end applications with React, TypeScript, Java, NestJS, Spring Boot, PostgreSQL, REST APIs, Docker, and cloud or self-hosted infrastructure. Projects include authentication, role-based access, real-time features, automation, testing, and production deployments. Completed military service in the Hellenic Special Forces.",
+    summary: [
+      "Digital Systems undergraduate entering the final year at the University of Thessaly, focused on full-stack software development, AI automation, and intelligent integrations. I design, build, test, and deploy end-to-end applications using React, TypeScript, Java, Spring Boot, NestJS, PostgreSQL, REST APIs, Docker, and cloud or self-hosted infrastructure.",
+      "My projects include authentication, role-based access control, real-time communication, workflow automation, testing, production deployments, and the integration of generative AI tools and agent-based workflows into real software and business processes.",
+    ],
   },
   links: {
     github: "https://github.com/spandreou",
@@ -95,7 +99,19 @@ export const resumeData: ResumeData = {
       "Wireshark",
       "MATLAB",
     ],
-    ai: ["Artificial Intelligence", "Machine Learning", "Automation"],
+    ai: [
+      "Generative AI Integrations",
+      "AI Agents",
+      "Workflow Automation",
+      "LLM-Assisted Workflows",
+      "Prompt Engineering",
+      "Structured Outputs",
+      "n8n",
+      "OpenAI / ChatGPT",
+      "Codex",
+      "Claude",
+      "Gemini",
+    ],
     cloud: [
       "Docker",
       "Cloudflare Tunnels",
@@ -108,7 +124,6 @@ export const resumeData: ResumeData = {
       "Power BI",
       "React Query",
       "Zustand",
-      "n8n",
     ],
   },
   education: [
