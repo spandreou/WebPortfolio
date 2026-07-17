@@ -156,7 +156,7 @@ export const projectsData: ProjectItem[] = [
     shortDescription:
       "Homelab operations dashboard for infrastructure health, service history, alerts, incidents, and dependency intelligence.",
     fullDescription:
-      "Building a homelab operations dashboard for services, containers, networks, tunnels, backups, alerts, incidents, history, and dependency intelligence.",
+      "Building a homelab operations dashboard for services, containers, networks, tunnels, backups, alerts, incidents, history, and dependency intelligence. Designed to evolve with AI-assisted incident analysis, recommendations, dependency intelligence, and operational automation.",
     technologies: ["React", "Node.js", "Docker", "Linux", "Cloudflare"],
     category: "systems",
     featured: true,
@@ -220,7 +220,9 @@ export const projectsData: ProjectItem[] = [
     name: "InvisibleAI",
     slug: "invisible-ai",
     shortDescription:
-      "Experimental project exploring practical AI-assisted development workflows.",
+      "Bilingual desktop assistant combining local speech recognition with a Google Gemini integration for real-time technical guidance.",
+    fullDescription:
+      "Built a bilingual desktop assistant that transcribes live audio locally with Faster-Whisper, sends structured prompts to Google Gemini, and presents concise answers, explanations, keywords, and contextual suggestions in a PyQt6 overlay.",
     technologies: [
       "Python",
       "PyQt6",

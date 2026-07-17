@@ -19,7 +19,7 @@ export function createMetadata({
     title === "Home" ? siteConfig.siteName : `${title} | ${siteConfig.name}`;
 
   return {
-    title,
+    title: title === "Home" ? { absolute: siteConfig.siteName } : title,
     description,
     keywords: [...siteConfig.keywords, ...keywords],
     alternates: {

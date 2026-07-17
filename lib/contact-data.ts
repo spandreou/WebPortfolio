@@ -33,9 +33,9 @@ export type ContactData = {
 export const contactData: ContactData = {
   heroTitle: "Let's Build Something Valuable",
   heroSubtitle:
-    "Open to internships and entry-level full-stack software engineering roles.",
+    "Open to internships and entry-level full-stack roles involving automation and intelligent integrations.",
   availability:
-    "I am currently available for opportunities where I can contribute to end-to-end applications, REST APIs, authentication, real-time features, testing, and production deployments.",
+    "I am currently available for opportunities where I can contribute to end-to-end applications, REST APIs, authentication, real-time features, AI-assisted workflows, testing, and production deployments.",
   cards: [
     {
       id: "email",
@@ -80,7 +80,7 @@ export const contactData: ContactData = {
   cta: {
     title: "Interested in Collaborating?",
     description:
-      "If you are hiring for internships or entry-level full-stack roles, I would be glad to discuss how I can contribute.",
+      "If you are hiring for internships or entry-level full-stack roles involving automation or intelligent integrations, I would be glad to discuss how I can contribute.",
     primaryLabel: "Send Email",
     primaryHref: `mailto:${siteConfig.email}`,
     secondaryLabel: "View Resume",

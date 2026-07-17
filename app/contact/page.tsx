@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   ...createMetadata({
     title: "Contact",
     description:
-      "Reach out for internships, entry-level full-stack roles, and software collaboration discussions.",
+      "Contact Spyridon Andreou for internships, entry-level full-stack roles, AI automation, intelligent integrations, and software collaboration.",
     path: "/contact",
   }),
 };
