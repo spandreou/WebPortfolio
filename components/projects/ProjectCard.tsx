@@ -1,7 +1,9 @@
 "use client";
 
-import { ArrowUpRight, CircleDot } from "lucide-react";
+import { ArrowUpRight, CircleDot, Network } from "lucide-react";
 import Link from "next/link";
+import { useRef, useState } from "react";
+import { ProjectDetailsModal } from "@/components/projects/ProjectDetailsModal";
 import {
   type ProjectItem,
   projectCategoryLabels,
@@ -19,13 +21,17 @@ const statusStyles: Record<ProjectItem["status"], string> = {
 };
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const detailsButtonRef = useRef<HTMLButtonElement>(null);
   const primaryHref = project.liveUrl ?? project.githubUrl;
   const primaryLabel = project.liveUrl ? "View Demo" : "View Repository";
+  const hasDetails = Boolean(project.architecture);
 
   return (
-    <article
-      className="content-card content-card-interactive project-card flex h-full flex-col rounded-2xl p-5 sm:p-6"
-    >
+    <>
+      <article
+        className="content-card content-card-interactive project-card flex h-full flex-col rounded-2xl p-5 sm:p-6"
+      >
       <div className="flex items-center justify-between gap-2">
         <span className="rounded-full border border-white/15 bg-slate-950/70 px-3 py-1 text-[0.64rem] uppercase tracking-[0.18em] text-cyan-100/80">
           {projectCategoryLabels[project.category]}
@@ -63,18 +69,33 @@ export function ProjectCard({ project }: ProjectCardProps) {
         ))}
       </div>
 
-      {primaryHref ? (
+      {primaryHref || hasDetails ? (
         <div className="mt-auto flex flex-wrap gap-2 border-t border-cyan-300/14 pt-5">
-          <Link
-            href={primaryHref}
-            target="_blank"
-            rel="noreferrer"
-            className="project-cta-primary inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-xs sm:text-sm"
-          >
-            <CircleDot size={14} />
-            {primaryLabel}
-            <ArrowUpRight size={14} className="card-link-icon" />
-          </Link>
+          {hasDetails ? (
+            <button
+              ref={detailsButtonRef}
+              type="button"
+              aria-haspopup="dialog"
+              aria-expanded={detailsOpen}
+              onClick={() => setDetailsOpen(true)}
+              className="project-cta-primary inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-xs sm:text-sm"
+            >
+              <Network size={14} aria-hidden="true" />
+              View Architecture
+            </button>
+          ) : null}
+          {primaryHref ? (
+            <Link
+              href={primaryHref}
+              target="_blank"
+              rel="noreferrer"
+              className="project-cta-primary inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-xs sm:text-sm"
+            >
+              <CircleDot size={14} />
+              {primaryLabel}
+              <ArrowUpRight size={14} className="card-link-icon" />
+            </Link>
+          ) : null}
           {project.liveUrl && project.githubUrl ? (
             <Link
               href={project.githubUrl}
@@ -88,6 +109,18 @@ export function ProjectCard({ project }: ProjectCardProps) {
           ) : null}
         </div>
       ) : null}
-    </article>
+
+      </article>
+      {hasDetails ? (
+        <ProjectDetailsModal
+          project={project}
+          open={detailsOpen}
+          onClose={() => {
+            setDetailsOpen(false);
+            detailsButtonRef.current?.focus();
+          }}
+        />
+      ) : null}
+    </>
   );
 }

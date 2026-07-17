@@ -14,6 +14,7 @@ export type ProjectItem = {
     | "systems";
   githubUrl?: string;
   liveUrl?: string;
+  architecture?: "homeops";
   featured: boolean;
   status: "completed" | "in-progress" | "concept";
 };
@@ -61,22 +62,26 @@ export const projectsData: ProjectItem[] = [
     status: "in-progress",
   },
   {
-    name: "HomeLabShare",
-    slug: "homelabshare",
+    name: "HomeOps",
+    slug: "homeops",
     shortDescription:
-      "Self-hosted file-sharing platform with secure access, per-user quotas, sharing workflows, and administration tools.",
+      "Central homelab operations and observability workspace for infrastructure health, services, containers, networks, Cloudflare tunnels, incidents, backups, alerts, deployments, history, and dependency intelligence.",
     fullDescription:
-      "Created a self-hosted file-sharing platform with authentication, per-user quotas, uploads, share links, favourites, invite codes, and administration tools.",
+      "HomeOps is a central operations and observability workspace for a self-hosted homelab. It combines service, host, storage, container, network, and Cloudflare tunnel visibility with incidents, alerts, backup reporting, operational history, timelines, dependency intelligence, and recommendations. Deployment operations previously developed separately are being integrated into HomeOps as an internal module alongside Docker operations, monitoring, Cloudflare intelligence, users, roles, and audit logs.",
     technologies: [
-      "Next.js",
+      "React",
       "TypeScript",
-      "Prisma",
-      "PostgreSQL",
+      "Node.js",
+      "Python",
       "Docker",
+      "Linux",
       "Cloudflare",
+      "REST APIs",
+      "JSON / JSONL",
+      "Monitoring Automation",
     ],
     category: "systems",
-    githubUrl: "https://github.com/spandreou/homelabshare",
+    architecture: "homeops",
     featured: true,
     status: "in-progress",
   },
@@ -101,6 +106,26 @@ export const projectsData: ProjectItem[] = [
     status: "in-progress",
   },
   {
+    name: "HomeLabShare",
+    slug: "homelabshare",
+    shortDescription:
+      "Self-hosted file-sharing platform with secure access, per-user quotas, sharing workflows, and administration tools.",
+    fullDescription:
+      "Created a self-hosted file-sharing platform with authentication, per-user quotas, uploads, share links, favourites, invite codes, and administration tools.",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Docker",
+      "Cloudflare",
+    ],
+    category: "systems",
+    githubUrl: "https://github.com/spandreou/homelabshare",
+    featured: true,
+    status: "in-progress",
+  },
+  {
     name: "WebPortfolio",
     slug: "webportfolio",
     shortDescription:
@@ -118,47 +143,6 @@ export const projectsData: ProjectItem[] = [
     ],
     category: "web",
     githubUrl: "https://github.com/spandreou/WebPortfolio",
-    featured: true,
-    status: "in-progress",
-  },
-  {
-    name: "DeployOps",
-    slug: "deployops",
-    shortDescription:
-      "Self-hosted deployment, monitoring, and logs platform for Docker-based applications.",
-    fullDescription:
-      "A deployment control panel for registering Docker Compose projects, triggering deploys and redeploys, restarting services, streaming logs, tracking deployment history, monitoring health checks, and enforcing JWT/RBAC access through a secure dashboard.",
-    technologies: [
-      "Java 21",
-      "Spring Boot 3",
-      "Spring Security",
-      "Spring Data JPA",
-      "PostgreSQL",
-      "Flyway",
-      "WebSockets",
-      "OpenAPI",
-      "React",
-      "TypeScript",
-      "Vite",
-      "Tailwind CSS",
-      "Docker",
-      "Docker Compose",
-      "GitHub Actions",
-    ],
-    category: "systems",
-    githubUrl: "https://github.com/spandreou/DeployOps",
-    featured: true,
-    status: "in-progress",
-  },
-  {
-    name: "HomeOps",
-    slug: "homeops",
-    shortDescription:
-      "Homelab operations dashboard for infrastructure health, service history, alerts, incidents, and dependency intelligence.",
-    fullDescription:
-      "Building a homelab operations dashboard for services, containers, networks, tunnels, backups, alerts, incidents, history, and dependency intelligence. Designed to evolve with AI-assisted incident analysis, recommendations, dependency intelligence, and operational automation.",
-    technologies: ["React", "Node.js", "Docker", "Linux", "Cloudflare"],
-    category: "systems",
     featured: true,
     status: "in-progress",
   },
