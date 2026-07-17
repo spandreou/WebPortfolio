@@ -2,9 +2,9 @@ export const siteConfig = {
   name: "Spyridon Andreou",
   siteName: "Spyridon Andreou Portfolio",
   description:
-    "Futuristic portfolio showcasing resume, technical projects, and collaboration channels.",
+    "Portfolio of Spyridon Andreou, a Junior Full-Stack Developer and Full-Stack Software Engineer building end-to-end web, API, and self-hosted systems.",
   email: "spyridonandreou04@gmail.com",
-  location: "Larisa and Thebes, Greece",
+  location: "Larisa / Thebes, Greece",
   links: {
     github: "https://github.com/spandreou",
     linkedin: "https://www.linkedin.com/in/spandreou",
@@ -12,11 +12,18 @@ export const siteConfig = {
   },
   keywords: [
     "Spyridon Andreou",
+    "Junior Full-Stack Developer",
     "Full Stack Developer",
+    "Full-Stack Software Engineer",
     "Software Engineer Portfolio",
     "Digital Systems",
-    "Backend Development",
-    "AI Projects",
+    "React",
+    "TypeScript",
+    "Java",
+    "Spring Boot",
+    "NestJS",
+    "PostgreSQL",
+    "Docker",
     "Next.js Portfolio",
   ],
 } as const;

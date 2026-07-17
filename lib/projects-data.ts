@@ -12,7 +12,7 @@ export type ProjectItem = {
     | "automation"
     | "tools"
     | "systems";
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
   featured: boolean;
   status: "completed" | "in-progress" | "concept";
@@ -36,26 +36,23 @@ export const projectStatusLabels: Record<ProjectItem["status"], string> = {
 
 export const projectsData: ProjectItem[] = [
   {
-    name: "MunicipalPolice",
-    slug: "municipal-police",
+    name: "Municipal Police Management Platform",
+    slug: "municipal-police-management-platform",
     shortDescription:
-      "Desktop-first municipal enforcement system for managing violations, offenders, signatures, and operational workflows.",
+      "Desktop and API platform for municipal enforcement workflows, authentication, records, audit history, and real-time operations.",
     fullDescription:
-      "A real-world full-stack desktop/admin project built around municipal police workflows, including authentication, role-based authorization, violation and offender management, audit logging, realtime updates, diagnostics, and PostgreSQL-backed data handling.",
+      "Built a desktop and API platform with JWT authentication, role-based access, ticket lifecycle management, vehicle records, audit history, real-time updates, PDF reporting, Greek and Greeklish fuzzy search, and automated tests.",
     technologies: [
-      "NestJS",
-      "Prisma ORM",
-      "PostgreSQL",
-      "React 19",
-      "Vite",
+      "React",
       "TypeScript",
       "Tauri",
+      "NestJS",
+      "Prisma",
+      "PostgreSQL",
       "Socket.IO",
-      "React Query",
-      "React Router",
-      "Zod",
-      "Playwright",
       "Docker",
+      "Jest",
+      "Playwright",
       "Cloudflare Tunnel",
     ],
     category: "systems",
@@ -64,24 +61,19 @@ export const projectsData: ProjectItem[] = [
     status: "in-progress",
   },
   {
-    name: "homeLabShare",
+    name: "HomeLabShare",
     slug: "homelabshare",
     shortDescription:
-      "Private, invite-only homelab file sharing platform with secure access and operational monitoring.",
+      "Self-hosted file-sharing platform with secure access, per-user quotas, sharing workflows, and administration tools.",
     fullDescription:
-      "A full-stack platform combining controlled onboarding, shared file exploration, system health visibility, SMTP notifications, and Cloudflare Tunnel exposure with a PostgreSQL-backed architecture.",
+      "Created a self-hosted file-sharing platform with authentication, per-user quotas, uploads, share links, favourites, invite codes, and administration tools.",
     technologies: [
-      "Next.js 16",
-      "React 19",
+      "Next.js",
       "TypeScript",
-      "Tailwind CSS",
-      "Prisma ORM",
+      "Prisma",
       "PostgreSQL",
-      "Nodemailer",
-      "Recharts",
       "Docker",
-      "Docker Compose",
-      "Cloudflare Tunnel",
+      "Cloudflare",
     ],
     category: "systems",
     githubUrl: "https://github.com/spandreou/homelabshare",
@@ -89,23 +81,18 @@ export const projectsData: ProjectItem[] = [
     status: "in-progress",
   },
   {
-    name: "GasStation",
-    slug: "gas-station",
+    name: "ShiftFlow",
+    slug: "shiftflow",
     shortDescription:
-      "Demo-ready gas station shift management dashboard with weekly/monthly scheduling and staff operations.",
+      "Production shift-planning app with rule-based scheduling, drag-and-drop editing, analytics, templates, and exports.",
     fullDescription:
-      "A scheduling-focused operations app with admin-only access, Firebase-backed demo data, weekly/monthly auto-generation, role-aware shift rules, announcements, hour summaries, and regression checks for the scheduler engine.",
+      "Developed a production shift-planning app with rule-based schedule generation, drag-and-drop editing, rest-day constraints, history, analytics, templates, and exports.",
     technologies: [
       "React",
-      "Vite",
-      "JavaScript",
       "TypeScript",
+      "Firebase",
       "Zustand",
-      "Firebase Auth",
-      "Firebase Firestore",
-      "Tailwind CSS",
       "dnd-kit",
-      "Playwright",
       "Vercel",
     ],
     category: "systems",
@@ -160,6 +147,18 @@ export const projectsData: ProjectItem[] = [
     ],
     category: "systems",
     githubUrl: "https://github.com/spandreou/DeployOps",
+    featured: true,
+    status: "in-progress",
+  },
+  {
+    name: "HomeOps",
+    slug: "homeops",
+    shortDescription:
+      "Homelab operations dashboard for infrastructure health, service history, alerts, incidents, and dependency intelligence.",
+    fullDescription:
+      "Building a homelab operations dashboard for services, containers, networks, tunnels, backups, alerts, incidents, history, and dependency intelligence.",
+    technologies: ["React", "Node.js", "Docker", "Linux", "Cloudflare"],
+    category: "systems",
     featured: true,
     status: "in-progress",
   },
