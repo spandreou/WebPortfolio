@@ -1,7 +1,9 @@
 "use client";
 
-import { ArrowUpRight, CircleDot, Sparkles } from "lucide-react";
+import { ArrowUpRight, CircleDot, Network, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { useRef, useState } from "react";
+import { ProjectDetailsModal } from "@/components/projects/ProjectDetailsModal";
 import {
   type ProjectItem,
   projectCategoryLabels,
@@ -21,16 +23,20 @@ const statusStyles: Record<ProjectItem["status"], string> = {
 };
 
 export function FeaturedProjectCard({ project, className }: FeaturedProjectCardProps) {
+  const [detailsOpen, setDetailsOpen] = useState(false);
+  const detailsButtonRef = useRef<HTMLButtonElement>(null);
   const primaryHref = project.liveUrl ?? project.githubUrl;
   const primaryLabel = project.liveUrl ? "View Demo" : "View Repository";
+  const hasDetails = Boolean(project.architecture);
 
   return (
-    <article
-      className={cn(
-        "content-card content-card-interactive project-card project-card-featured rounded-3xl p-6 sm:p-8",
-        className,
-      )}
-    >
+    <>
+      <article
+        className={cn(
+          "content-card content-card-interactive project-card project-card-featured rounded-3xl p-6 sm:p-8",
+          className,
+        )}
+      >
       <div className="flex flex-wrap items-center gap-2">
         <p className="inline-flex items-center gap-2 rounded-full border border-cyan-300/30 bg-cyan-300/12 px-3 py-1.5 text-xs text-cyan-100">
           <Sparkles size={14} />
@@ -53,7 +59,9 @@ export function FeaturedProjectCard({ project, className }: FeaturedProjectCardP
         Project Snapshot
       </p>
       <p className="mt-3 text-sm leading-relaxed text-slate-300/88 sm:text-base">
-        {project.fullDescription ?? project.shortDescription}
+        {project.architecture
+          ? project.shortDescription
+          : (project.fullDescription ?? project.shortDescription)}
       </p>
       <p className="mt-5 text-[0.68rem] uppercase tracking-[0.2em] text-cyan-200/70">
         Tech Stack
@@ -69,18 +77,33 @@ export function FeaturedProjectCard({ project, className }: FeaturedProjectCardP
         ))}
       </div>
 
-      {primaryHref ? (
+      {primaryHref || hasDetails ? (
         <div className="mt-6 flex flex-wrap gap-2 border-t border-cyan-300/14 pt-5">
-          <Link
-            href={primaryHref}
-            target="_blank"
-            rel="noreferrer"
-            className="project-cta-primary inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm"
-          >
-            <CircleDot size={15} />
-            {primaryLabel}
-            <ArrowUpRight size={16} className="card-link-icon" />
-          </Link>
+          {hasDetails ? (
+            <button
+              ref={detailsButtonRef}
+              type="button"
+              aria-haspopup="dialog"
+              aria-expanded={detailsOpen}
+              onClick={() => setDetailsOpen(true)}
+              className="project-cta-primary inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm"
+            >
+              <Network size={15} aria-hidden="true" />
+              View Architecture
+            </button>
+          ) : null}
+          {primaryHref ? (
+            <Link
+              href={primaryHref}
+              target="_blank"
+              rel="noreferrer"
+              className="project-cta-primary inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm"
+            >
+              <CircleDot size={15} />
+              {primaryLabel}
+              <ArrowUpRight size={16} className="card-link-icon" />
+            </Link>
+          ) : null}
           {project.liveUrl && project.githubUrl ? (
             <Link
               href={project.githubUrl}
@@ -94,6 +117,19 @@ export function FeaturedProjectCard({ project, className }: FeaturedProjectCardP
           ) : null}
         </div>
       ) : null}
-    </article>
+
+
+      </article>
+      {hasDetails ? (
+        <ProjectDetailsModal
+          project={project}
+          open={detailsOpen}
+          onClose={() => {
+            setDetailsOpen(false);
+            detailsButtonRef.current?.focus();
+          }}
+        />
+      ) : null}
+    </>
   );
 }

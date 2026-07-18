@@ -202,8 +202,16 @@ export const resumeData: ResumeData = {
     {
       name: "HomeOps",
       description:
-        "Homelab operations dashboard for services, containers, networks, tunnels, backups, alerts, incidents, history, and dependency intelligence.",
-      technologies: ["React", "Node.js", "Docker", "Linux", "Cloudflare"],
+        "Central homelab operations and observability workspace for services, containers, networks, Cloudflare tunnels, deployments, backups, alerts, incidents, history, timelines, and dependency intelligence.",
+      technologies: [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Python",
+        "Docker",
+        "Linux",
+        "Cloudflare",
+      ],
     },
   ],
   certifications: [
