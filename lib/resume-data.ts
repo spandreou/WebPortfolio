@@ -172,7 +172,7 @@ export const resumeData: ResumeData = {
       link: "https://github.com/spandreou/MunicipalPoliceProject",
     },
     {
-      name: "ShiftFlow",
+      name: "Shiftoryx",
       description:
         "Production shift-planning app with rule-based schedule generation, drag-and-drop editing, rest-day constraints, history, analytics, templates, and exports.",
       technologies: [

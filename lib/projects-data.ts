@@ -86,8 +86,8 @@ export const projectsData: ProjectItem[] = [
     status: "in-progress",
   },
   {
-    name: "ShiftFlow",
-    slug: "shiftflow",
+    name: "Shiftoryx",
+    slug: "shiftoryx",
     shortDescription:
       "Production shift-planning app with rule-based scheduling, drag-and-drop editing, analytics, templates, and exports.",
     fullDescription:
