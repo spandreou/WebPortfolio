@@ -110,6 +110,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
       ) : null}
 
+
       </article>
       {hasDetails ? (
         <ProjectDetailsModal

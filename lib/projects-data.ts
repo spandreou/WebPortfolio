@@ -147,6 +147,7 @@ export const projectsData: ProjectItem[] = [
     status: "in-progress",
   },
   {
+
     name: "RealEstateAnalytics",
     slug: "real-estate-analytics",
     shortDescription:

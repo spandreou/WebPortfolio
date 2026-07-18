@@ -118,6 +118,7 @@ export function FeaturedProjectCard({ project, className }: FeaturedProjectCardP
         </div>
       ) : null}
 
+
       </article>
       {hasDetails ? (
         <ProjectDetailsModal
