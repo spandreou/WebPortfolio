@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/Button";
+import ParticleText from "@/components/ParticleText";
 import { TargetFrame } from "@/components/TargetFrame";
 import { siteConfig } from "@/lib/site-config";
 
@@ -17,32 +18,75 @@ export function HeroSection() {
       <div aria-hidden="true" className="noise-overlay pointer-events-none absolute inset-0 z-0" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
-        <motion.p
-          className="max-w-full font-mono text-[0.62rem] tracking-[0.16em] text-cyan-300/85 sm:text-xs sm:tracking-[0.3em]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          {siteConfig.professionalTitle.map((line, index) => (
-            <span
-              key={line}
-              className={index === 0 ? "block" : "mt-2 block text-cyan-100/80"}
-            >
-              {line.toUpperCase()}
-            </span>
-          ))}
-        </motion.p>
-
         <motion.div
-          className="mt-6 w-full max-w-full"
+          className="w-full max-w-full"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         >
-          <TargetFrame className="w-full sm:w-auto">
-            <h1 className="hero-title whitespace-nowrap bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400 bg-clip-text text-xl font-semibold tracking-[0.04em] text-transparent subpixel-antialiased sm:text-5xl sm:tracking-[0.07em] lg:text-6xl">
-              {siteConfig.name.toUpperCase()}
-            </h1>
+          <TargetFrame className="w-full max-w-4xl">
+            <div className="mx-auto flex w-full flex-col items-center justify-center py-1 sm:py-2">
+              <ParticleText
+                text={siteConfig.name.toUpperCase()}
+                particleSize={2.2}
+                density={4}
+                color="#38bdf8"
+                highlightColor="#67e8f9"
+                scatter={155}
+                gatherDuration={1450}
+                stagger={360}
+                pointerRepel={34}
+                repelRadius={115}
+                idleDrift={0.55}
+                trigger="hover"
+                fontSize="clamp(2.25rem, 6vw, 5rem)"
+                fontWeight={800}
+                glow
+                style={{ height: "clamp(5.25rem, 10vw, 7.5rem)", minHeight: "5.25rem" }}
+              />
+
+              <div className="mt-1 w-full sm:mt-2">
+                <ParticleText
+                  text={siteConfig.professionalTitle[0].toUpperCase()}
+                  particleSize={1.45}
+                  density={4}
+                  color="#67e8f9"
+                  highlightColor="#38bdf8"
+                  scatter={85}
+                  gatherDuration={1250}
+                  stagger={280}
+                  pointerRepel={24}
+                  repelRadius={90}
+                  idleDrift={0.4}
+                  trigger="hover"
+                  fontSize="clamp(0.72rem, 1.7vw, 1.05rem)"
+                  fontWeight={700}
+                  glow
+                  style={{ height: "2.25rem", minHeight: "2.25rem" }}
+                />
+              </div>
+
+              <div className="w-full">
+                <ParticleText
+                  text={siteConfig.professionalTitle[1].toUpperCase()}
+                  particleSize={1.35}
+                  density={4}
+                  color="#bae6fd"
+                  highlightColor="#22d3ee"
+                  scatter={85}
+                  gatherDuration={1250}
+                  stagger={280}
+                  pointerRepel={24}
+                  repelRadius={90}
+                  idleDrift={0.4}
+                  trigger="hover"
+                  fontSize="clamp(0.68rem, 1.55vw, 0.98rem)"
+                  fontWeight={650}
+                  glow
+                  style={{ height: "2.15rem", minHeight: "2.15rem" }}
+                />
+              </div>
+            </div>
           </TargetFrame>
         </motion.div>
 
