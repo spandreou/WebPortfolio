@@ -25,111 +25,83 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         >
           <TargetFrame className="w-full max-w-4xl">
-            <div className="mx-auto flex w-full max-w-[50rem] flex-col items-center justify-center overflow-hidden px-2 py-5 sm:px-4 sm:py-7">
-              <div className="relative flex min-h-[5.25rem] w-full items-center justify-center overflow-hidden sm:min-h-[6.5rem]">
+            <div className="mx-auto flex w-full max-w-[50rem] flex-col items-center justify-center overflow-hidden px-2 py-6 sm:px-5 sm:py-8">
+              <h1 className="sr-only">{siteConfig.name}</h1>
+              <p className="sr-only">{siteConfig.professionalTitle.join(" · ")}</p>
+
+              <div
+                aria-hidden="true"
+                className="w-full overflow-hidden px-3 sm:px-6"
+              >
+                <ParticleText
+                  text={siteConfig.name.toUpperCase()}
+                  particleSize={1.35}
+                  density={2}
+                  color="#7dd3fc"
+                  highlightColor="#22d3ee"
+                  scatter={62}
+                  gatherDuration={1050}
+                  stagger={170}
+                  pointerRepel={12}
+                  repelRadius={72}
+                  idleDrift={0.12}
+                  trigger="hover"
+                  fontSize="clamp(2rem, 4.6vw, 3.8rem)"
+                  fontWeight={800}
+                  glow
+                  style={{ height: "clamp(5.5rem, 9vw, 6.75rem)", minHeight: "5.5rem" }}
+                />
+              </div>
+
+              <div className="mt-4 flex w-full flex-col items-center gap-1.5 sm:mt-5 sm:gap-2">
                 <div
                   aria-hidden="true"
-                  className="pointer-events-auto absolute inset-x-6 top-1/2 -translate-y-1/2 opacity-45 sm:inset-x-8 sm:opacity-50"
+                  className="w-full overflow-hidden px-7 sm:px-12"
                 >
                   <ParticleText
-                    text={siteConfig.name.toUpperCase()}
-                    particleSize={1.8}
-                    density={4}
-                    color="#22d3ee"
-                    highlightColor="#38bdf8"
-                    scatter={88}
-                    gatherDuration={1150}
-                    stagger={220}
-                    pointerRepel={18}
-                    repelRadius={92}
-                    idleDrift={0.3}
+                    className="font-mono"
+                    text={siteConfig.professionalTitle[0].toUpperCase()}
+                    particleSize={0.72}
+                    density={2}
+                    color="#cffafe"
+                    highlightColor="#67e8f9"
+                    scatter={34}
+                    gatherDuration={900}
+                    stagger={120}
+                    pointerRepel={7}
+                    repelRadius={48}
+                    idleDrift={0.08}
                     trigger="hover"
-                    fontSize="clamp(2.25rem, 5vw, 4rem)"
-                    fontWeight={800}
-                    glow
-                    style={{ height: "clamp(5.25rem, 9vw, 6.75rem)", minHeight: "5.25rem" }}
+                    fontSize="clamp(0.84rem, 1.45vw, 1.08rem)"
+                    fontWeight={700}
+                    glow={false}
+                    style={{ height: "2.8rem", minHeight: "2.8rem" }}
                   />
                 </div>
 
-                <motion.h1
-                  className="relative z-10 max-w-full whitespace-nowrap bg-gradient-to-r from-sky-300 via-cyan-200 to-blue-300 bg-clip-text px-2 text-[clamp(1.8rem,4.55vw,3.75rem)] font-bold tracking-[0.01em] text-transparent drop-shadow-[0_0_16px_rgba(34,211,238,0.24)] sm:tracking-[0.025em]"
-                  initial={{ opacity: 0, scale: 0.985 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.65, delay: 0.55, ease: "easeOut" }}
+                <div
+                  aria-hidden="true"
+                  className="w-full overflow-hidden px-7 sm:px-12"
                 >
-                  {siteConfig.name.toUpperCase()}
-                </motion.h1>
-              </div>
-
-              <div className="mt-5 flex w-full flex-col items-center gap-2 sm:mt-6 sm:gap-3">
-                <div className="relative flex min-h-[2.5rem] w-full items-center justify-center overflow-hidden sm:min-h-[2.8rem]">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-auto absolute inset-x-8 top-1/2 -translate-y-1/2 opacity-20 sm:inset-x-12"
-                  >
-                    <ParticleText
-                      text={siteConfig.professionalTitle[0].toUpperCase()}
-                      particleSize={0.72}
-                      density={4}
-                      color="#67e8f9"
-                      highlightColor="#bae6fd"
-                      scatter={42}
-                      gatherDuration={900}
-                      stagger={160}
-                      pointerRepel={7}
-                      repelRadius={58}
-                      idleDrift={0.1}
-                      trigger="hover"
-                      fontSize="clamp(0.82rem, 1.55vw, 1.05rem)"
-                      fontWeight={700}
-                      glow={false}
-                      style={{ height: "2.5rem", minHeight: "2.5rem" }}
-                    />
-                  </div>
-
-                  <motion.p
-                    className="relative z-10 px-3 font-mono text-[clamp(0.72rem,1.45vw,1rem)] font-semibold tracking-[0.1em] text-cyan-100/95 drop-shadow-[0_0_8px_rgba(103,232,249,0.14)] sm:tracking-[0.14em]"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.72, ease: "easeOut" }}
-                  >
-                    {siteConfig.professionalTitle[0].toUpperCase()}
-                  </motion.p>
-                </div>
-
-                <div className="relative flex min-h-[2.4rem] w-full items-center justify-center overflow-hidden sm:min-h-[2.7rem]">
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-auto absolute inset-x-8 top-1/2 -translate-y-1/2 opacity-[0.16] sm:inset-x-12"
-                  >
-                    <ParticleText
-                      text={siteConfig.professionalTitle[1].toUpperCase()}
-                      particleSize={0.58}
-                      density={4}
-                      color="#7dd3fc"
-                      highlightColor="#bae6fd"
-                      scatter={36}
-                      gatherDuration={880}
-                      stagger={150}
-                      pointerRepel={6}
-                      repelRadius={54}
-                      idleDrift={0.08}
-                      trigger="hover"
-                      fontSize="clamp(0.78rem, 1.45vw, 0.98rem)"
-                      fontWeight={700}
-                      glow={false}
-                      style={{ height: "2.4rem", minHeight: "2.4rem" }}
-                    />
-                  </div>
-
-                  <motion.p
-                    className="relative z-10 px-3 font-mono text-[clamp(0.69rem,1.35vw,0.94rem)] font-medium tracking-[0.09em] text-sky-200/88 drop-shadow-[0_0_7px_rgba(56,189,248,0.12)] sm:tracking-[0.13em]"
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.84, ease: "easeOut" }}
-                  >
-                    {siteConfig.professionalTitle[1].toUpperCase()}
-                  </motion.p>
+                  <ParticleText
+                    className="font-mono"
+                    text={siteConfig.professionalTitle[1].toUpperCase()}
+                    particleSize={0.6}
+                    density={2}
+                    color="#bae6fd"
+                    highlightColor="#7dd3fc"
+                    scatter={30}
+                    gatherDuration={860}
+                    stagger={110}
+                    pointerRepel={6}
+                    repelRadius={44}
+                    idleDrift={0.06}
+                    trigger="hover"
+                    fontSize="clamp(0.78rem, 1.35vw, 0.98rem)"
+                    fontWeight={700}
+                    glow={false}
+                    style={{ height: "2.65rem", minHeight: "2.65rem" }}
+                  />
                 </div>
               </div>
             </div>
