@@ -100,7 +100,7 @@ export function HeroSection() {
                 <div className="relative flex min-h-[2.55rem] w-full items-center justify-center sm:min-h-[2.85rem]">
                   <div
                     aria-hidden="true"
-                    className="pointer-events-auto absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-4"
+                    className="pointer-events-auto absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-[0.4]"
                   >
                     <ParticleText
                       text={siteConfig.professionalTitle[1].toUpperCase()}
