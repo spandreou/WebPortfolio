@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/Button";
-import ParticleText from "@/components/ParticleText";
 import { TargetFrame } from "@/components/TargetFrame";
 import { siteConfig } from "@/lib/site-config";
 
@@ -18,93 +17,32 @@ export function HeroSection() {
       <div aria-hidden="true" className="noise-overlay pointer-events-none absolute inset-0 z-0" />
 
       <div className="relative z-10 mx-auto flex w-full max-w-4xl flex-col items-center text-center">
+        <motion.p
+          className="max-w-full font-mono text-[0.62rem] tracking-[0.16em] text-cyan-300/85 sm:text-xs sm:tracking-[0.3em]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+          {siteConfig.professionalTitle.map((line, index) => (
+            <span
+              key={line}
+              className={index === 0 ? "block" : "mt-2 block text-cyan-100/80"}
+            >
+              {line.toUpperCase()}
+            </span>
+          ))}
+        </motion.p>
+
         <motion.div
-          className="w-full max-w-full"
+          className="mt-6 w-full max-w-full"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         >
-          <TargetFrame className="w-full max-w-4xl">
-            <div className="mx-auto flex w-full max-w-[50rem] flex-col items-center justify-center overflow-hidden px-2 py-6 sm:px-5 sm:py-8">
-              <h1 className="sr-only">{siteConfig.name}</h1>
-              <p className="sr-only">{siteConfig.professionalTitle.join(" · ")}</p>
-
-              <div
-                aria-hidden="true"
-                className="w-full overflow-hidden px-3 sm:px-6"
-              >
-                <ParticleText
-                  text={siteConfig.name.toUpperCase()}
-                  particleSize={1.35}
-                  density={2}
-                  color="#7dd3fc"
-                  highlightColor="#22d3ee"
-                  scatter={62}
-                  gatherDuration={1050}
-                  stagger={170}
-                  pointerRepel={12}
-                  repelRadius={72}
-                  idleDrift={0.12}
-                  trigger="hover"
-                  fontSize="clamp(2rem, 4.6vw, 3.8rem)"
-                  fontWeight={800}
-                  glow
-                  style={{ height: "clamp(5.5rem, 9vw, 6.75rem)", minHeight: "5.5rem" }}
-                />
-              </div>
-
-              <div className="mt-4 flex w-full flex-col items-center gap-1.5 sm:mt-5 sm:gap-2">
-                <div
-                  aria-hidden="true"
-                  className="w-full overflow-hidden px-7 sm:px-12"
-                >
-                  <ParticleText
-                    className="font-mono"
-                    text={siteConfig.professionalTitle[0].toUpperCase()}
-                    particleSize={0.72}
-                    density={2}
-                    color="#cffafe"
-                    highlightColor="#67e8f9"
-                    scatter={34}
-                    gatherDuration={900}
-                    stagger={120}
-                    pointerRepel={7}
-                    repelRadius={48}
-                    idleDrift={0.08}
-                    trigger="hover"
-                    fontSize="clamp(0.84rem, 1.45vw, 1.08rem)"
-                    fontWeight={700}
-                    glow={false}
-                    style={{ height: "2.8rem", minHeight: "2.8rem" }}
-                  />
-                </div>
-
-                <div
-                  aria-hidden="true"
-                  className="w-full overflow-hidden px-7 sm:px-12"
-                >
-                  <ParticleText
-                    className="font-mono"
-                    text={siteConfig.professionalTitle[1].toUpperCase()}
-                    particleSize={0.6}
-                    density={2}
-                    color="#bae6fd"
-                    highlightColor="#7dd3fc"
-                    scatter={30}
-                    gatherDuration={860}
-                    stagger={110}
-                    pointerRepel={6}
-                    repelRadius={44}
-                    idleDrift={0.06}
-                    trigger="hover"
-                    fontSize="clamp(0.78rem, 1.35vw, 0.98rem)"
-                    fontWeight={700}
-                    glow={false}
-                    style={{ height: "2.65rem", minHeight: "2.65rem" }}
-                  />
-                </div>
-              </div>
-            </div>
+          <TargetFrame className="w-full sm:w-auto">
+            <h1 className="hero-title whitespace-nowrap bg-gradient-to-r from-sky-400 via-cyan-300 to-blue-400 bg-clip-text text-xl font-semibold tracking-[0.04em] text-transparent subpixel-antialiased sm:text-5xl sm:tracking-[0.07em] lg:text-6xl">
+              {siteConfig.name.toUpperCase()}
+            </h1>
           </TargetFrame>
         </motion.div>
 
