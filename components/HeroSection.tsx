@@ -25,65 +25,65 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         >
           <TargetFrame className="w-full max-w-4xl">
-            <div className="mx-auto flex w-[min(78vw,52rem)] max-w-full flex-col items-center justify-center py-1 sm:py-2">
+            <div className="mx-auto flex w-[min(82vw,54rem)] max-w-full flex-col items-center justify-center py-2 sm:py-3">
               <ParticleText
                 text={siteConfig.name.toUpperCase()}
-                particleSize={2.2}
-                density={4}
+                particleSize={2.7}
+                density={3}
                 color="#38bdf8"
                 highlightColor="#67e8f9"
-                scatter={155}
-                gatherDuration={1450}
-                stagger={360}
-                pointerRepel={34}
-                repelRadius={115}
-                idleDrift={0.55}
+                scatter={140}
+                gatherDuration={1350}
+                stagger={300}
+                pointerRepel={30}
+                repelRadius={110}
+                idleDrift={0.45}
                 trigger="hover"
-                fontSize="clamp(2.25rem, 6vw, 5rem)"
-                fontWeight={800}
+                fontSize="clamp(2.6rem, 6.4vw, 5.4rem)"
+                fontWeight={850}
                 glow
-                style={{ height: "clamp(5.25rem, 10vw, 7.5rem)", minHeight: "5.25rem" }}
+                style={{ height: "clamp(6rem, 11vw, 8.25rem)", minHeight: "6rem" }}
               />
 
-              <div className="mt-1 w-full sm:mt-2">
+              <div className="mt-3 w-full sm:mt-4">
                 <ParticleText
                   text={siteConfig.professionalTitle[0].toUpperCase()}
-                  particleSize={1.45}
-                  density={4}
-                  color="#67e8f9"
-                  highlightColor="#38bdf8"
-                  scatter={85}
-                  gatherDuration={1250}
-                  stagger={280}
-                  pointerRepel={24}
-                  repelRadius={90}
-                  idleDrift={0.4}
+                  particleSize={2.05}
+                  density={3}
+                  color="#bae6fd"
+                  highlightColor="#67e8f9"
+                  scatter={70}
+                  gatherDuration={1120}
+                  stagger={220}
+                  pointerRepel={18}
+                  repelRadius={82}
+                  idleDrift={0.25}
                   trigger="hover"
-                  fontSize="clamp(0.72rem, 1.7vw, 1.05rem)"
-                  fontWeight={700}
-                  glow
-                  style={{ height: "2.25rem", minHeight: "2.25rem" }}
+                  fontSize="clamp(1rem, 2vw, 1.35rem)"
+                  fontWeight={800}
+                  glow={false}
+                  style={{ height: "3.2rem", minHeight: "3.2rem" }}
                 />
               </div>
 
-              <div className="w-full">
+              <div className="mt-1 w-full sm:mt-2">
                 <ParticleText
                   text={siteConfig.professionalTitle[1].toUpperCase()}
-                  particleSize={1.35}
-                  density={4}
-                  color="#bae6fd"
-                  highlightColor="#22d3ee"
-                  scatter={85}
-                  gatherDuration={1250}
-                  stagger={280}
-                  pointerRepel={24}
-                  repelRadius={90}
-                  idleDrift={0.4}
+                  particleSize={2}
+                  density={3}
+                  color="#c7f1ff"
+                  highlightColor="#38bdf8"
+                  scatter={70}
+                  gatherDuration={1120}
+                  stagger={220}
+                  pointerRepel={18}
+                  repelRadius={82}
+                  idleDrift={0.25}
                   trigger="hover"
-                  fontSize="clamp(0.68rem, 1.55vw, 0.98rem)"
-                  fontWeight={650}
-                  glow
-                  style={{ height: "2.15rem", minHeight: "2.15rem" }}
+                  fontSize="clamp(0.95rem, 1.9vw, 1.28rem)"
+                  fontWeight={780}
+                  glow={false}
+                  style={{ height: "3.1rem", minHeight: "3.1rem" }}
                 />
               </div>
             </div>
