@@ -25,34 +25,34 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         >
           <TargetFrame className="w-full max-w-4xl">
-            <div className="mx-auto flex w-[min(84vw,54rem)] max-w-full flex-col items-center justify-center py-5 sm:py-7">
-              <div className="relative flex min-h-[5.75rem] w-full items-center justify-center sm:min-h-[7rem]">
+            <div className="mx-auto flex w-full max-w-[50rem] flex-col items-center justify-center overflow-hidden px-2 py-5 sm:px-4 sm:py-7">
+              <div className="relative flex min-h-[5.25rem] w-full items-center justify-center overflow-hidden sm:min-h-[6.5rem]">
                 <div
                   aria-hidden="true"
-                  className="pointer-events-auto absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-55 sm:opacity-60"
+                  className="pointer-events-auto absolute inset-x-6 top-1/2 -translate-y-1/2 opacity-45 sm:inset-x-8 sm:opacity-50"
                 >
                   <ParticleText
                     text={siteConfig.name.toUpperCase()}
-                    particleSize={2.2}
+                    particleSize={1.8}
                     density={4}
                     color="#22d3ee"
                     highlightColor="#38bdf8"
-                    scatter={115}
-                    gatherDuration={1200}
-                    stagger={250}
-                    pointerRepel={25}
-                    repelRadius={105}
-                    idleDrift={0.4}
+                    scatter={88}
+                    gatherDuration={1150}
+                    stagger={220}
+                    pointerRepel={18}
+                    repelRadius={92}
+                    idleDrift={0.3}
                     trigger="hover"
-                    fontSize="clamp(2.6rem, 6.2vw, 5.2rem)"
-                    fontWeight={850}
+                    fontSize="clamp(2.25rem, 5vw, 4rem)"
+                    fontWeight={800}
                     glow
-                    style={{ height: "clamp(5.75rem, 10vw, 7.5rem)", minHeight: "5.75rem" }}
+                    style={{ height: "clamp(5.25rem, 9vw, 6.75rem)", minHeight: "5.25rem" }}
                   />
                 </div>
 
                 <motion.h1
-                  className="relative z-10 whitespace-nowrap bg-gradient-to-r from-sky-300 via-cyan-200 to-blue-300 bg-clip-text text-[clamp(2.05rem,5.5vw,4.85rem)] font-extrabold tracking-[0.035em] text-transparent drop-shadow-[0_0_18px_rgba(34,211,238,0.28)] sm:tracking-[0.06em]"
+                  className="relative z-10 max-w-full whitespace-nowrap bg-gradient-to-r from-sky-300 via-cyan-200 to-blue-300 bg-clip-text px-2 text-[clamp(1.8rem,4.55vw,3.75rem)] font-bold tracking-[0.01em] text-transparent drop-shadow-[0_0_16px_rgba(34,211,238,0.24)] sm:tracking-[0.025em]"
                   initial={{ opacity: 0, scale: 0.985 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.65, delay: 0.55, ease: "easeOut" }}
@@ -62,34 +62,34 @@ export function HeroSection() {
               </div>
 
               <div className="mt-5 flex w-full flex-col items-center gap-2 sm:mt-6 sm:gap-3">
-                <div className="relative flex min-h-[2.7rem] w-full items-center justify-center sm:min-h-[3rem]">
+                <div className="relative flex min-h-[2.5rem] w-full items-center justify-center overflow-hidden sm:min-h-[2.8rem]">
                   <div
                     aria-hidden="true"
-                    className="pointer-events-auto absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-45"
+                    className="pointer-events-auto absolute inset-x-8 top-1/2 -translate-y-1/2 opacity-20 sm:inset-x-12"
                   >
                     <ParticleText
                       text={siteConfig.professionalTitle[0].toUpperCase()}
-                      particleSize={1.1}
-                      density={3}
+                      particleSize={0.72}
+                      density={4}
                       color="#67e8f9"
                       highlightColor="#bae6fd"
-                      scatter={58}
-                      gatherDuration={980}
-                      stagger={190}
-                      pointerRepel={12}
-                      repelRadius={72}
-                      idleDrift={0.18}
+                      scatter={42}
+                      gatherDuration={900}
+                      stagger={160}
+                      pointerRepel={7}
+                      repelRadius={58}
+                      idleDrift={0.1}
                       trigger="hover"
-                      fontSize="clamp(0.92rem, 1.9vw, 1.28rem)"
-                      fontWeight={760}
+                      fontSize="clamp(0.82rem, 1.55vw, 1.05rem)"
+                      fontWeight={700}
                       glow={false}
-                      style={{ height: "2.7rem", minHeight: "2.7rem" }}
+                      style={{ height: "2.5rem", minHeight: "2.5rem" }}
                     />
                   </div>
 
                   <motion.p
-                    className="relative z-10 font-mono text-[clamp(0.78rem,1.75vw,1.15rem)] font-semibold tracking-[0.14em] text-cyan-100/95 drop-shadow-[0_0_10px_rgba(103,232,249,0.18)] sm:tracking-[0.2em]"
-                    initial={{ opacity: 0, y: 10 }}
+                    className="relative z-10 px-3 font-mono text-[clamp(0.72rem,1.45vw,1rem)] font-semibold tracking-[0.1em] text-cyan-100/95 drop-shadow-[0_0_8px_rgba(103,232,249,0.14)] sm:tracking-[0.14em]"
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.72, ease: "easeOut" }}
                   >
@@ -97,34 +97,34 @@ export function HeroSection() {
                   </motion.p>
                 </div>
 
-                <div className="relative flex min-h-[2.55rem] w-full items-center justify-center sm:min-h-[2.85rem]">
+                <div className="relative flex min-h-[2.4rem] w-full items-center justify-center overflow-hidden sm:min-h-[2.7rem]">
                   <div
                     aria-hidden="true"
-                    className="pointer-events-auto absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-[0.4]"
+                    className="pointer-events-auto absolute inset-x-8 top-1/2 -translate-y-1/2 opacity-[0.16] sm:inset-x-12"
                   >
                     <ParticleText
                       text={siteConfig.professionalTitle[1].toUpperCase()}
-                      particleSize={0.9}
-                      density={3}
+                      particleSize={0.58}
+                      density={4}
                       color="#7dd3fc"
                       highlightColor="#bae6fd"
-                      scatter={52}
-                      gatherDuration={940}
-                      stagger={180}
-                      pointerRepel={10}
-                      repelRadius={68}
-                      idleDrift={0.14}
+                      scatter={36}
+                      gatherDuration={880}
+                      stagger={150}
+                      pointerRepel={6}
+                      repelRadius={54}
+                      idleDrift={0.08}
                       trigger="hover"
-                      fontSize="clamp(0.86rem, 1.75vw, 1.18rem)"
-                      fontWeight={720}
+                      fontSize="clamp(0.78rem, 1.45vw, 0.98rem)"
+                      fontWeight={700}
                       glow={false}
-                      style={{ height: "2.55rem", minHeight: "2.55rem" }}
+                      style={{ height: "2.4rem", minHeight: "2.4rem" }}
                     />
                   </div>
 
                   <motion.p
-                    className="relative z-10 font-mono text-[clamp(0.74rem,1.6vw,1.05rem)] font-medium tracking-[0.12em] text-sky-200/82 drop-shadow-[0_0_8px_rgba(56,189,248,0.14)] sm:tracking-[0.18em]"
-                    initial={{ opacity: 0, y: 10 }}
+                    className="relative z-10 px-3 font-mono text-[clamp(0.69rem,1.35vw,0.94rem)] font-medium tracking-[0.09em] text-sky-200/88 drop-shadow-[0_0_7px_rgba(56,189,248,0.12)] sm:tracking-[0.13em]"
+                    initial={{ opacity: 0, y: 8 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.84, ease: "easeOut" }}
                   >
