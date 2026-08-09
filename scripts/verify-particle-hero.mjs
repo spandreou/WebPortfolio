@@ -29,6 +29,11 @@ const particle = read("components/ParticleText.tsx");
 assert.match(particle, /prefers-reduced-motion: reduce/, "ParticleText must honor reduced-motion preferences");
 assert.match(particle, /ResizeObserver/, "ParticleText must rebuild particles on resize");
 assert.match(particle, /pointerenter/, "ParticleText must support pointer interaction");
-assert.match(particle, /maxTextWidth = width \* 0\.92/, "ParticleText must auto-fit text to its container width");
+assert.match(particle, /maxTextWidth = width \* 0\.9/, "ParticleText must reserve horizontal breathing room while fitting text");
+assert.match(particle, /offscreen\.width = width/, "ParticleText sampling canvas must match the real component width");
+assert.match(particle, /offscreen\.height = height/, "ParticleText sampling canvas must match the real component height");
+assert.match(particle, /offCtx\.font = font;[\s\S]*offCtx\.textAlign = "center";[\s\S]*offCtx\.textBaseline = "middle";/, "Canvas font and centered alignment must be restored after offscreen resize");
+assert.match(particle, /offCtx\.fillText\(content, width \/ 2, height \/ 2\)/, "ParticleText must rasterize the full string at the center of the full sampling canvas");
+assert.doesNotMatch(particle, /actualBoundingBoxLeft|actualBoundingBoxRight/, "ParticleText must not depend on browser-specific bounding-box offsets for rasterization");
 
-console.log("Pure particle hero typography verified.");
+console.log("Pure particle hero full-canvas sampling verified.");

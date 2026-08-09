@@ -269,39 +269,49 @@ export default function ParticleText({
       if (currentBuild !== buildId) return;
 
       const offscreen = document.createElement("canvas");
+      offscreen.width = width;
+      offscreen.height = height;
       const offCtx = offscreen.getContext("2d", { willReadFrequently: true });
       if (!offCtx) return;
 
       const content = String(text || " ");
-      const maxTextWidth = width * 0.92;
+      const maxTextWidth = width * 0.9;
+      const maxTextHeight = height * 0.72;
+
       offCtx.font = font;
       let metrics = offCtx.measureText(content);
-      const measuredWidth = Math.max(1, metrics.width);
-      if (measuredWidth > maxTextWidth) {
-        resolvedSize = Math.max(18, resolvedSize * (maxTextWidth / measuredWidth));
+      let measuredWidth = Math.max(1, metrics.width);
+      let measuredHeight = Math.max(
+        1,
+        (metrics.actualBoundingBoxAscent || resolvedSize * 0.78) +
+          (metrics.actualBoundingBoxDescent || resolvedSize * 0.22),
+      );
+
+      const widthScale = maxTextWidth / measuredWidth;
+      const heightScale = maxTextHeight / measuredHeight;
+      const fitScale = Math.min(1, widthScale, heightScale);
+
+      if (fitScale < 1) {
+        resolvedSize = Math.max(12, resolvedSize * fitScale);
         font = `${fontWeight} ${resolvedSize}px ${resolvedFamily}`;
         await waitForFonts(font);
         if (currentBuild !== buildId) return;
         offCtx.font = font;
         metrics = offCtx.measureText(content);
+        measuredWidth = Math.max(1, metrics.width);
+        measuredHeight = Math.max(
+          1,
+          (metrics.actualBoundingBoxAscent || resolvedSize * 0.78) +
+            (metrics.actualBoundingBoxDescent || resolvedSize * 0.22),
+        );
       }
 
-      const left = Math.ceil(metrics.actualBoundingBoxLeft || 0);
-      const right = Math.ceil(metrics.actualBoundingBoxRight || metrics.width);
-      const ascent = Math.ceil(metrics.actualBoundingBoxAscent || resolvedSize * 0.78);
-      const descent = Math.ceil(metrics.actualBoundingBoxDescent || resolvedSize * 0.22);
-      const padding = Math.max(12, Math.ceil(resolvedSize * 0.08));
-      const textWidth = Math.max(1, left + right);
-      const textHeight = Math.max(1, ascent + descent);
-
-      offscreen.width = textWidth + padding * 2;
-      offscreen.height = textHeight + padding * 2;
       offCtx.clearRect(0, 0, offscreen.width, offscreen.height);
       offCtx.font = font;
-      offCtx.textAlign = "left";
-      offCtx.textBaseline = "alphabetic";
+      offCtx.textAlign = "center";
+      offCtx.textBaseline = "middle";
       offCtx.fillStyle = "#ffffff";
-      offCtx.fillText(content, padding - left, padding + ascent);
+      offCtx.fillText(content, width / 2, height / 2);
 
       const imageData = offCtx.getImageData(0, 0, offscreen.width, offscreen.height);
       const targets: Array<{ x: number; y: number; alpha: number }> = [];
@@ -312,8 +322,8 @@ export default function ParticleText({
           const alpha = imageData.data[(y * offscreen.width + x) * 4 + 3];
           if (alpha > 40) {
             targets.push({
-              x: width / 2 - offscreen.width / 2 + x,
-              y: height / 2 - offscreen.height / 2 + y,
+              x,
+              y,
               alpha: alpha / 255,
             });
           }
