@@ -212,6 +212,73 @@
   transition: text-shadow 320ms ease-out;
 }
 
+.particle-identity-stack {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  gap: 0.15rem;
+}
+
+.particle-identity-line {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.particle-identity-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.particle-identity-role {
+  height: clamp(2rem, 3.8vw, 3rem);
+}
+
+.particle-identity-role .particle-identity-fallback {
+  color: rgba(186, 230, 253, 0.68);
+  font-size: clamp(0.78rem, 2vw, 1.35rem);
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(103, 232, 249, 0.2);
+}
+
+.particle-identity-name {
+  height: clamp(4.75rem, 10vw, 8.5rem);
+  margin-top: clamp(0.35rem, 1vw, 0.85rem);
+}
+
+.particle-identity-name .particle-identity-fallback {
+  color: rgba(56, 189, 248, 0.38);
+  font-size: clamp(1.5rem, 6vw, 5rem);
+  font-weight: 700;
+  text-shadow:
+    0 0 14px rgba(125, 211, 252, 0.24),
+    0 0 28px rgba(34, 211, 238, 0.14);
+}
+
+@media (max-width: 639px) {
+  .particle-identity-stack {
+    gap: 0;
+  }
+
+  .particle-identity-role {
+    height: 2rem;
+  }
+
+  .particle-identity-name {
+    height: 4.5rem;
+    margin-top: 0.25rem;
+  }
+}
+
 .target-frame:hover .hero-title {
   text-shadow:
     0 0 14px rgba(125, 211, 252, 0.3),

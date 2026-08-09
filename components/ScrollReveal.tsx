@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type ScrollRevealProps = {
@@ -15,6 +15,8 @@ type ScrollRevealProps = {
   amount?: number;
 };
 
+const visibleState = { opacity: 1, y: 0, filter: "blur(0px)" };
+
 export function ScrollReveal({
   children,
   className,
@@ -25,25 +27,25 @@ export function ScrollReveal({
   once = true,
   amount = 0.2,
 }: ScrollRevealProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const prefersReducedMotion = useReducedMotion();
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  const shouldReduceMotion = hasMounted && prefersReducedMotion;
 
   return (
     <motion.div
       className={cn(className)}
-      initial={
-        shouldReduceMotion
-          ? undefined
-          : { opacity: 0, y, filter: `blur(${blur}px)` }
-      }
-      whileInView={
-        shouldReduceMotion
-          ? undefined
-          : { opacity: 1, y: 0, filter: "blur(0px)" }
-      }
+      initial={{ opacity: 0, y, filter: `blur(${blur}px)` }}
+      animate={shouldReduceMotion ? visibleState : undefined}
+      whileInView={shouldReduceMotion ? undefined : visibleState}
       viewport={{ once, amount }}
       transition={
         shouldReduceMotion
-          ? undefined
+          ? { duration: 0 }
           : { duration, delay, ease: [0.22, 1, 0.36, 1] }
       }
     >
@@ -51,4 +53,3 @@ export function ScrollReveal({
     </motion.div>
   );
 }
-
