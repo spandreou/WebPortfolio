@@ -25,7 +25,7 @@ export function HeroSection() {
           transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
         >
           <TargetFrame className="w-full max-w-4xl">
-            <div className="mx-auto flex w-full flex-col items-center justify-center py-1 sm:py-2">
+            <div className="mx-auto flex w-[min(78vw,52rem)] max-w-full flex-col items-center justify-center py-1 sm:py-2">
               <ParticleText
                 text={siteConfig.name.toUpperCase()}
                 particleSize={2.2}
