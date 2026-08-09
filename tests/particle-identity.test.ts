@@ -37,3 +37,12 @@ test("uses calmer settled motion for role lines than for the name", () => {
   assert.equal(lines[2].idleDrift, 0.28);
   assert.equal(lines[2].pointerRepel, 16);
 });
+
+test("keeps role fallbacks above particles for legibility", () => {
+  const lines = createParticleIdentityLines(["Role one", "Role two"], "Name");
+
+  assert.deepEqual(
+    lines.map(({ fallbackLayer }) => fallbackLayer),
+    ["foreground", "foreground", "background"],
+  );
+});

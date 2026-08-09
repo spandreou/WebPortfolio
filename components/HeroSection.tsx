@@ -49,7 +49,13 @@ export function HeroSection() {
                         : "particle-identity-line particle-identity-role font-mono"
                     }
                   >
-                    <span className="particle-identity-fallback">
+                    <span
+                      className={`particle-identity-fallback ${
+                        line.fallbackLayer === "foreground"
+                          ? "particle-identity-fallback-foreground"
+                          : ""
+                      }`}
+                    >
                       {line.text.toUpperCase()}
                     </span>
                     <ParticleText
