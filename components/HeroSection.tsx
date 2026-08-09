@@ -62,23 +62,75 @@ export function HeroSection() {
               </div>
 
               <div className="mt-5 flex w-full flex-col items-center gap-2 sm:mt-6 sm:gap-3">
-                <motion.p
-                  className="font-mono text-[clamp(0.78rem,1.75vw,1.15rem)] font-semibold tracking-[0.14em] text-cyan-100/95 drop-shadow-[0_0_10px_rgba(103,232,249,0.18)] sm:tracking-[0.2em]"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.72, ease: "easeOut" }}
-                >
-                  {siteConfig.professionalTitle[0].toUpperCase()}
-                </motion.p>
+                <div className="relative flex min-h-[2.7rem] w-full items-center justify-center sm:min-h-[3rem]">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-auto absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-45"
+                  >
+                    <ParticleText
+                      text={siteConfig.professionalTitle[0].toUpperCase()}
+                      particleSize={1.1}
+                      density={3}
+                      color="#67e8f9"
+                      highlightColor="#bae6fd"
+                      scatter={58}
+                      gatherDuration={980}
+                      stagger={190}
+                      pointerRepel={12}
+                      repelRadius={72}
+                      idleDrift={0.18}
+                      trigger="hover"
+                      fontSize="clamp(0.92rem, 1.9vw, 1.28rem)"
+                      fontWeight={760}
+                      glow={false}
+                      style={{ height: "2.7rem", minHeight: "2.7rem" }}
+                    />
+                  </div>
 
-                <motion.p
-                  className="font-mono text-[clamp(0.74rem,1.6vw,1.05rem)] font-medium tracking-[0.12em] text-sky-200/82 drop-shadow-[0_0_8px_rgba(56,189,248,0.14)] sm:tracking-[0.18em]"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.84, ease: "easeOut" }}
-                >
-                  {siteConfig.professionalTitle[1].toUpperCase()}
-                </motion.p>
+                  <motion.p
+                    className="relative z-10 font-mono text-[clamp(0.78rem,1.75vw,1.15rem)] font-semibold tracking-[0.14em] text-cyan-100/95 drop-shadow-[0_0_10px_rgba(103,232,249,0.18)] sm:tracking-[0.2em]"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.72, ease: "easeOut" }}
+                  >
+                    {siteConfig.professionalTitle[0].toUpperCase()}
+                  </motion.p>
+                </div>
+
+                <div className="relative flex min-h-[2.55rem] w-full items-center justify-center sm:min-h-[2.85rem]">
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-auto absolute inset-x-0 top-1/2 -translate-y-1/2 opacity-[0.4]"
+                  >
+                    <ParticleText
+                      text={siteConfig.professionalTitle[1].toUpperCase()}
+                      particleSize={0.9}
+                      density={3}
+                      color="#7dd3fc"
+                      highlightColor="#bae6fd"
+                      scatter={52}
+                      gatherDuration={940}
+                      stagger={180}
+                      pointerRepel={10}
+                      repelRadius={68}
+                      idleDrift={0.14}
+                      trigger="hover"
+                      fontSize="clamp(0.86rem, 1.75vw, 1.18rem)"
+                      fontWeight={720}
+                      glow={false}
+                      style={{ height: "2.55rem", minHeight: "2.55rem" }}
+                    />
+                  </div>
+
+                  <motion.p
+                    className="relative z-10 font-mono text-[clamp(0.74rem,1.6vw,1.05rem)] font-medium tracking-[0.12em] text-sky-200/82 drop-shadow-[0_0_8px_rgba(56,189,248,0.14)] sm:tracking-[0.18em]"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.84, ease: "easeOut" }}
+                  >
+                    {siteConfig.professionalTitle[1].toUpperCase()}
+                  </motion.p>
+                </div>
               </div>
             </div>
           </TargetFrame>
