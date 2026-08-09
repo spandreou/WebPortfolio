@@ -11,13 +11,15 @@ const hero = read("components/HeroSection.tsx");
 
 assert.equal(
   (hero.match(/<ParticleText\b/g) ?? []).length,
-  1,
-  "HeroSection must render exactly one decorative ParticleText instance for the name",
+  3,
+  "HeroSection must render one particle layer for the name and one for each subtitle",
 );
-assert.match(hero, /aria-hidden="true"[\s\S]*?<ParticleText/, "The particle layer must be hidden from assistive technology");
-assert.match(hero, /<h1[\s\S]*?siteConfig\.name\.toUpperCase\(\)/, "Hero must render the uppercase name as semantic solid text");
-assert.match(hero, /siteConfig\.professionalTitle\[0\]\.toUpperCase\(\)/, "Hero must render the first professional title as normal text");
-assert.match(hero, /siteConfig\.professionalTitle\[1\]\.toUpperCase\(\)/, "Hero must render the second professional title as normal text");
+assert.match(hero, /aria-hidden="true"[\s\S]*?<ParticleText/, "Particle layers must be hidden from assistive technology");
+assert.match(hero, /<h1[\s\S]*?siteConfig\.name\.toUpperCase\(\)/, "Hero must keep the uppercase name as semantic solid text");
+assert.match(hero, /particleSize=\{1\.1\}/, "The first subtitle must use smaller particles than the name");
+assert.match(hero, /particleSize=\{0\.9\}/, "The second subtitle must use the smallest particles");
+assert.match(hero, /siteConfig\.professionalTitle\[0\]\.toUpperCase\(\)/, "Hero must render the first professional title");
+assert.match(hero, /siteConfig\.professionalTitle\[1\]\.toUpperCase\(\)/, "Hero must render the second professional title");
 assert.doesNotMatch(hero, /professionalTitle\.map/, "Professional titles must remain explicitly controlled inside the shared frame");
 assert.match(hero, /<TargetFrame className="w-full max-w-4xl">/, "The shared frame must remain responsive and full-width");
 assert.match(hero, /bg-gradient-to-r/, "The readable name must retain the cyan/sky gradient treatment");
@@ -27,4 +29,4 @@ assert.match(particle, /prefers-reduced-motion: reduce/, "ParticleText must hono
 assert.match(particle, /ResizeObserver/, "ParticleText must rebuild particles on resize");
 assert.match(particle, /pointerenter/, "ParticleText must support pointer interaction");
 
-console.log("Hybrid particle hero structure verified.");
+console.log("Hybrid particle hero with subtitle particles verified.");
