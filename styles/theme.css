@@ -239,10 +239,6 @@
   user-select: none;
 }
 
-.particle-identity-fallback-foreground {
-  z-index: 20;
-}
-
 .particle-identity-role {
   height: clamp(2rem, 3.8vw, 3rem);
 }

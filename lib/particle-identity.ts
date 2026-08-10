@@ -1,7 +1,7 @@
 export type ParticleIdentityLine = {
   text: string;
   kind: "role" | "name";
-  fallbackLayer: "foreground" | "background";
+  renderFallback: false;
   gatherDuration: 1500;
   stagger: 320;
   trigger: "mount";
@@ -22,10 +22,10 @@ export function createParticleIdentityLines(
   const roles = professionalTitle.map((text) => ({
     text,
     kind: "role" as const,
-    fallbackLayer: "foreground" as const,
+    renderFallback: false as const,
     ...sharedTiming,
-    idleDrift: 0.18,
-    pointerRepel: 10,
+    idleDrift: 0.12,
+    pointerRepel: 8,
   }));
 
   return [
@@ -33,7 +33,7 @@ export function createParticleIdentityLines(
     {
       text: name,
       kind: "name",
-      fallbackLayer: "background",
+      renderFallback: false,
       ...sharedTiming,
       idleDrift: 0.28,
       pointerRepel: 16,

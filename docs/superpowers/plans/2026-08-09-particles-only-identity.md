@@ -31,7 +31,7 @@
 - Consumes: `createParticleIdentityLines(professionalTitle: readonly string[], name: string): ParticleIdentityLine[]`
 - Produces: `ParticleIdentityLine.renderFallback: false`, consumed by `HeroSection` to omit visible fallback spans.
 
-- [ ] **Step 1: Write the failing particles-only contract test**
+- [x] **Step 1: Write the failing particles-only contract test**
 
 Replace the foreground-fallback test with:
 
@@ -46,7 +46,7 @@ test("uses particles only for every visible identity line", () => {
 });
 ```
 
-- [ ] **Step 2: Run the test and verify RED**
+- [x] **Step 2: Run the test and verify RED**
 
 Run:
 
@@ -56,7 +56,7 @@ Run:
 
 Expected: the new test fails because `renderFallback` is `undefined` for all three lines.
 
-- [ ] **Step 3: Implement the minimal particles-only contract**
+- [x] **Step 3: Implement the minimal particles-only contract**
 
 In `lib/particle-identity.ts`, replace `fallbackLayer` with:
 
@@ -76,14 +76,16 @@ In `HeroSection`, render the fallback span only when `line.renderFallback` is tr
 ) : null}
 ```
 
-- [ ] **Step 4: Tune particle-only role recognition**
+- [x] **Step 4: Tune particle-only role recognition**
 
 Use denser and slightly larger particles for role lines without changing name behavior:
 
 ```tsx
-particleSize={isName ? 1.9 : 1.45}
+particleSize={isName ? 1.9 : lineIndex === 1 ? 1.8 : 1.45}
 density={isName ? 3 : 1}
 ```
+
+Raise the internal minimum particle cap from `900` to `1600` while preserving the existing maximum cap of `5200` and the device-pixel-ratio cap.
 
 Reduce settled role motion in `lib/particle-identity.ts` to:
 
@@ -94,7 +96,7 @@ pointerRepel: 8,
 
 Update the existing motion test literals to match. Remove the now-unused foreground fallback CSS while retaining the reusable base fallback styles used by other potential `ParticleText` compositions.
 
-- [ ] **Step 5: Run automated verification and verify GREEN**
+- [x] **Step 5: Run automated verification and verify GREEN**
 
 Run:
 
@@ -108,7 +110,7 @@ git diff --check -- components/HeroSection.tsx lib/particle-identity.ts styles/t
 
 Expected: all tests pass, ESLint exits zero, the Next.js production build succeeds, and `git diff --check` prints no errors.
 
-- [ ] **Step 6: Verify the local UI**
+- [x] **Step 6: Verify the local UI**
 
 Start the local dev server with Node 24 and inspect `/` in the Browser at 1440x900 and 390x844. Confirm:
 
@@ -119,7 +121,7 @@ Start the local dev server with Node 24 and inspect `/` in the Browser at 1440x9
 - the console has no errors.
 - reduced-motion rendering remains static and recognizable.
 
-- [ ] **Step 7: Commit the trial implementation**
+- [x] **Step 7: Commit the trial implementation**
 
 ```powershell
 git add -- components/HeroSection.tsx lib/particle-identity.ts styles/theme.css tests/particle-identity.test.ts docs/superpowers/plans/2026-08-09-particles-only-identity.md

@@ -37,8 +37,13 @@ export function HeroSection() {
             </div>
 
             <div aria-hidden="true" className="particle-identity-stack">
-              {identityLines.map((line) => {
+              {identityLines.map((line, lineIndex) => {
                 const isName = line.kind === "name";
+                const particleSize = isName
+                  ? 1.9
+                  : lineIndex === 1
+                    ? 1.8
+                    : 1.45;
 
                 return (
                   <div
@@ -49,19 +54,15 @@ export function HeroSection() {
                         : "particle-identity-line particle-identity-role font-mono"
                     }
                   >
-                    <span
-                      className={`particle-identity-fallback ${
-                        line.fallbackLayer === "foreground"
-                          ? "particle-identity-fallback-foreground"
-                          : ""
-                      }`}
-                    >
-                      {line.text.toUpperCase()}
-                    </span>
+                    {line.renderFallback ? (
+                      <span className="particle-identity-fallback">
+                        {line.text.toUpperCase()}
+                      </span>
+                    ) : null}
                     <ParticleText
                       text={line.text.toUpperCase()}
-                      particleSize={isName ? 1.9 : 1.15}
-                      density={isName ? 3 : 2}
+                      particleSize={particleSize}
+                      density={isName ? 3 : 1}
                       color={isName ? "#38bdf8" : "#67e8f9"}
                       highlightColor={isName ? "#60a5fa" : "#bae6fd"}
                       scatter={isName ? 88 : 52}
