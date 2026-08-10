@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type CSSProperties } from "react";
+import { sampleInkCells } from "@/lib/particle-sampling";
 
 export interface ParticleTextProps {
   text?: string;
@@ -360,21 +361,17 @@ const ParticleText = ({
         offscreen.width,
         offscreen.height,
       );
-      const targets: Target[] = [];
       const step = Math.max(2, Math.floor(density));
-
-      for (let y = 0; y < offscreen.height; y += step) {
-        for (let x = 0; x < offscreen.width; x += step) {
-          const alpha = imageData.data[(y * offscreen.width + x) * 4 + 3];
-          if (alpha > 40) {
-            targets.push({
-              x: width / 2 - offscreen.width / 2 + x,
-              y: height / 2 - offscreen.height / 2 + y,
-              alpha: alpha / 255,
-            });
-          }
-        }
-      }
+      const targets: Target[] = sampleInkCells(
+        imageData.data,
+        offscreen.width,
+        offscreen.height,
+        step,
+      ).map((sample) => ({
+        x: width / 2 - offscreen.width / 2 + sample.x,
+        y: height / 2 - offscreen.height / 2 + sample.y,
+        alpha: sample.alpha,
+      }));
 
       const maxParticles = Math.max(
         1600,
