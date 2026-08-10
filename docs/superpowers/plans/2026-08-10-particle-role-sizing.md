@@ -29,13 +29,13 @@
 
 **Interfaces:**
 - Consumes: the existing `ParticleText.fontSize` string prop and `.particle-identity-role` responsive height rules.
-- Produces: role mask size `clamp(0.9rem, 2.35vw, 1.55rem)` with canvas height `clamp(2.35rem, 4.4vw, 3.35rem)` and mobile height `2.35rem`.
+- Produces: role mask size `clamp(1rem, 2.75vw, 1.75rem)` with canvas height `clamp(2.5rem, 4.8vw, 3.6rem)` and mobile height `2.5rem`.
 
-- [ ] **Step 1: Record the failing visual baseline**
+- [x] **Step 1: Record the failing visual baseline**
 
 At a Browser viewport of 845x507, reload `http://localhost:3000`, wait for the gather animation to settle, and use canvas pixel bounds to record the two role glyph heights. Confirm the current role canvas height is approximately 32 pixels and the active particle glyph height is below the new target of 18 pixels.
 
-- [ ] **Step 2: Increase the role font mask**
+- [x] **Step 2: Increase the role font mask**
 
 In `components/HeroSection.tsx`, change only the role branch of `fontSize`:
 
@@ -43,21 +43,21 @@ In `components/HeroSection.tsx`, change only the role branch of `fontSize`:
 fontSize={
   isName
     ? "clamp(1.5rem, 6vw, 5rem)"
-    : "clamp(0.9rem, 2.35vw, 1.55rem)"
+    : "clamp(1rem, 2.75vw, 1.75rem)"
 }
 ```
 
-- [ ] **Step 3: Increase matching role canvas heights**
+- [x] **Step 3: Increase matching role canvas heights**
 
 In `styles/theme.css`, set:
 
 ```css
 .particle-identity-role {
-  height: clamp(2.35rem, 4.4vw, 3.35rem);
+  height: clamp(2.5rem, 4.8vw, 3.6rem);
 }
 
 .particle-identity-role .particle-identity-fallback {
-  font-size: clamp(0.9rem, 2.35vw, 1.55rem);
+  font-size: clamp(1rem, 2.75vw, 1.75rem);
 }
 ```
 
@@ -65,15 +65,15 @@ Inside the existing `@media (max-width: 639px)` block, set:
 
 ```css
 .particle-identity-role {
-  height: 2.35rem;
+  height: 2.5rem;
 }
 ```
 
-- [ ] **Step 4: Verify the visual sizing change**
+- [x] **Step 4: Verify the visual sizing change**
 
 At 845x507, verify both active particle glyph heights are at least 18 pixels and the name canvas height remains unchanged. At 1440x900 and 390x844, confirm exactly three identity canvases, zero `.particle-identity-fallback` elements, no horizontal overflow, and readable settled title lines.
 
-- [ ] **Step 5: Run automated verification**
+- [x] **Step 5: Run automated verification**
 
 Run:
 
@@ -87,7 +87,7 @@ git diff --check -- components/HeroSection.tsx styles/theme.css docs/superpowers
 
 Expected: 3 tests pass, ESLint exits zero, the Next.js production build succeeds, and `git diff --check` reports no errors.
 
-- [ ] **Step 6: Commit the local sizing trial**
+- [x] **Step 6: Commit the local sizing trial**
 
 ```powershell
 git add -- components/HeroSection.tsx styles/theme.css docs/superpowers/plans/2026-08-10-particle-role-sizing.md

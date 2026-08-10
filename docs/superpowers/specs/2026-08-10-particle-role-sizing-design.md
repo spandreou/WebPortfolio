@@ -6,9 +6,9 @@ Increase only the two professional-title lines in the particles-only hero so the
 
 ## Selected Approach
 
-Increase the responsive font mask used by both role `ParticleText` canvases from `clamp(0.78rem, 2vw, 1.35rem)` to `clamp(0.9rem, 2.35vw, 1.55rem)`. Increase each role canvas height from `clamp(2rem, 3.8vw, 3rem)` to `clamp(2.35rem, 4.4vw, 3.35rem)` and use `2.35rem` at the existing mobile breakpoint.
+Increase the responsive font mask used by both role `ParticleText` canvases from `clamp(0.78rem, 2vw, 1.35rem)` to `clamp(1rem, 2.75vw, 1.75rem)`. Increase each role canvas height from `clamp(2rem, 3.8vw, 3rem)` to `clamp(2.5rem, 4.8vw, 3.6rem)` and use `2.5rem` at the existing mobile breakpoint.
 
-This produces an approximately 15–18 percent increase around the reference viewport while preserving the particles-only rendering. Particle size, density, color, gather timing, frame dimensions, and name sizing remain unchanged.
+This raises the measured particle glyph height from 14–15 pixels to at least 18 pixels around the reference viewport while preserving the particles-only rendering. Particle size, density, color, gather timing, frame dimensions, and name sizing remain unchanged.
 
 ## Responsive Behavior
 

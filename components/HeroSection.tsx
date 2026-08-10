@@ -75,7 +75,7 @@ export function HeroSection() {
                       fontSize={
                         isName
                           ? "clamp(1.5rem, 6vw, 5rem)"
-                          : "clamp(0.78rem, 2vw, 1.35rem)"
+                          : "clamp(1rem, 2.75vw, 1.75rem)"
                       }
                       fontWeight={700}
                       fontFamily="inherit"

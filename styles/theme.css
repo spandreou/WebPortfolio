@@ -240,12 +240,12 @@
 }
 
 .particle-identity-role {
-  height: clamp(2rem, 3.8vw, 3rem);
+  height: clamp(2.5rem, 4.8vw, 3.6rem);
 }
 
 .particle-identity-role .particle-identity-fallback {
   color: rgba(207, 250, 254, 0.78);
-  font-size: clamp(0.78rem, 2vw, 1.35rem);
+  font-size: clamp(1rem, 2.75vw, 1.75rem);
   font-weight: 700;
   text-shadow:
     0 0 7px rgba(8, 47, 73, 0.9),
@@ -272,7 +272,7 @@
   }
 
   .particle-identity-role {
-    height: 2rem;
+    height: 2.5rem;
   }
 
   .particle-identity-name {
