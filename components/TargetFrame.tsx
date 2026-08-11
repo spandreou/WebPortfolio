@@ -123,7 +123,7 @@ export function TargetFrame({ children, className }: TargetFrameProps) {
       <span className="frame-corner corner-br" />
       <span className="target-scanline absolute inset-y-2 -left-1/3 w-1/3" />
 
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 w-full">{children}</div>
     </div>
   );
 }
