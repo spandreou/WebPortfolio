@@ -52,10 +52,10 @@ const apiNodes: ArchitectureNode[] = [
     phase: "Building",
   },
   {
-    title: "Operations",
-    description: "Deployments, Docker operations, backups, and alerts.",
+    title: "Backups & Reports",
+    description: "Backup readiness, generated reports, alerts, and operational history.",
     icon: Waypoints,
-    phase: "Being integrated",
+    phase: "Available",
   },
   {
     title: "Incidents & Access",
@@ -122,7 +122,7 @@ export function HomeOpsArchitecture() {
         <ArchitectureLane
           eyebrow="HomeOps API Modules"
           title="Operations & Intelligence"
-          description="Reads shared state and exposes control-center capabilities as they are integrated."
+          description="Reads shared state and exposes bounded operational intelligence."
           icon={BrainCircuit}
           nodes={apiNodes}
         />

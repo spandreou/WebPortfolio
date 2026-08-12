@@ -202,7 +202,7 @@ export const resumeData: ResumeData = {
     {
       name: "HomeOps",
       description:
-        "Central homelab operations and observability workspace for services, containers, networks, Cloudflare tunnels, deployments, backups, alerts, incidents, history, timelines, and dependency intelligence.",
+        "Central homelab operations and observability workspace for services, containers, networks, Cloudflare tunnels, backups, alerts, reports, incidents, history, timelines, and dependency intelligence.",
       technologies: [
         "React",
         "TypeScript",
