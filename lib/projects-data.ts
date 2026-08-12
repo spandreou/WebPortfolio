@@ -65,9 +65,9 @@ export const projectsData: ProjectItem[] = [
     name: "HomeOps",
     slug: "homeops",
     shortDescription:
-      "Central homelab operations and observability workspace for infrastructure health, services, containers, networks, Cloudflare tunnels, incidents, backups, alerts, deployments, history, and dependency intelligence.",
+      "Central homelab operations and observability workspace for infrastructure health, services, containers, networks, Cloudflare tunnels, incidents, backups, alerts, reports, history, and dependency intelligence.",
     fullDescription:
-      "HomeOps is a central operations and observability workspace for a self-hosted homelab. It combines service, host, storage, container, network, and Cloudflare tunnel visibility with incidents, alerts, backup reporting, operational history, timelines, dependency intelligence, and recommendations. Deployment operations previously developed separately are being integrated into HomeOps as an internal module alongside Docker operations, monitoring, Cloudflare intelligence, users, roles, and audit logs.",
+      "HomeOps is a central operations and observability workspace for a self-hosted homelab. It combines service, host, storage, container, network, and Cloudflare tunnel visibility with incidents, alerts, backup reporting, operational history, timelines, dependency intelligence, and recommendations. The system brings together a Python monitoring and reporting pipeline, a read-only REST API, and a React and Next.js operations dashboard.",
     technologies: [
       "React",
       "TypeScript",
