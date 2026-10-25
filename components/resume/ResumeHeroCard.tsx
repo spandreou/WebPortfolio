@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, Globe, Link2, Mail, MapPin, Network, Phone } from "lucide-react";
+import { Download, Eye, Globe, Link2, Mail, MapPin, Network, Phone } from "lucide-react";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { TargetFrame } from "@/components/TargetFrame";
+import { CvPreviewModal } from "@/components/resume/CvPreviewModal";
 import type { ResumeData } from "@/lib/resume-data";
 import { siteConfig } from "@/lib/site-config";
 
@@ -14,6 +15,8 @@ type ResumeHeroCardProps = {
 };
 
 export function ResumeHeroCard({ personal, links }: ResumeHeroCardProps) {
+  const [previewOpen, setPreviewOpen] = useState(false);
+
   return (
     <section className="relative pt-4 sm:pt-8">
       <div className="absolute left-1/2 top-1/2 -z-10 h-[25rem] w-[25rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/10 blur-3xl" />
@@ -63,7 +66,7 @@ export function ResumeHeroCard({ personal, links }: ResumeHeroCardProps) {
           ))}
         </div>
 
-        <div className="mt-7 flex flex-wrap gap-3">
+        <div className="mt-7 flex flex-wrap items-center gap-3">
           {links.github ? (
             <ResumeLink href={links.github} icon={<Link2 size={16} />} label="GitHub" />
           ) : null}
@@ -81,16 +84,30 @@ export function ResumeHeroCard({ personal, links }: ResumeHeroCardProps) {
               label="Portfolio"
             />
           ) : null}
+          <button
+            type="button"
+            onClick={() => setPreviewOpen(true)}
+            className="inline-flex items-center gap-2 rounded-full border border-cyan-300/60 bg-cyan-300/20 px-4 py-2.5 text-sm font-medium text-cyan-100 shadow-[0_0_20px_rgba(34,211,238,0.22)] transition-all duration-300 hover:scale-105 hover:border-cyan-100 hover:bg-cyan-300/30 hover:text-white hover:shadow-[0_0_28px_rgba(34,211,238,0.4)]"
+          >
+            <Eye size={16} />
+            Preview CV
+          </button>
           <Link
             href={siteConfig.links.cv}
             download
-            className="inline-flex items-center gap-2 rounded-full border border-cyan-300/40 bg-cyan-300/15 px-4 py-2.5 text-sm font-medium text-cyan-100 transition hover:border-cyan-100/70 hover:bg-cyan-300/25 hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-slate-950/70 px-4 py-2.5 text-sm font-medium text-slate-200 transition hover:border-cyan-300/40 hover:bg-slate-900 hover:text-cyan-100"
           >
             <Download size={16} />
             Download CV
           </Link>
         </div>
       </motion.div>
+
+      <CvPreviewModal
+        open={previewOpen}
+        onClose={() => setPreviewOpen(false)}
+        pdfUrl={siteConfig.links.cv}
+      />
     </section>
   );
 }

@@ -1,5 +1,3 @@
-import { siteConfig } from "@/lib/site-config";
-
 export type ResumeData = {
   personal: {
     fullName: string;
@@ -53,13 +51,13 @@ export type ResumeData = {
 export const resumeData: ResumeData = {
   personal: {
     fullName: "Spyridon Andreou",
-    title: siteConfig.professionalTitle.join(" | "),
-    location: "Larisa / Thebes, Greece",
+    title: "Full Stack Developer",
+    location: "Larisa, Greece",
     email: "spyridonandreou04@gmail.com",
     phone: "+30 694 505 2118",
     summary: [
-      "Digital Systems undergraduate entering the final year at the University of Thessaly, focused on full-stack software development, AI automation, and intelligent integrations. I design, build, test, and deploy end-to-end applications using React, TypeScript, Java, Spring Boot, NestJS, PostgreSQL, REST APIs, Docker, and cloud or self-hosted infrastructure.",
-      "My projects include authentication, role-based access control, real-time communication, workflow automation, testing, production deployments, and the integration of generative AI tools and agent-based workflows into real software and business processes.",
+      "Final-year BSc Digital Systems student at the University of Thessaly with hands-on experience designing, building and deploying backend and full-stack applications. Strong focus on Java/Spring Boot, TypeScript/React, Node.js/NestJS, PostgreSQL, REST APIs, Docker and Linux. Projects include authentication and RBAC, real-time features, testing, monitoring, automation and self-hosted deployments.",
+      "I use an AI-assisted development workflow with Codex and Antigravity for research, implementation support, debugging, testing and documentation while reviewing and validating the final code and technical decisions.",
     ],
   },
   links: {
@@ -70,95 +68,106 @@ export const resumeData: ResumeData = {
   skills: {
     frontend: [
       "React",
+      "Next.js",
       "TypeScript",
       "JavaScript",
+      "Tailwind CSS",
       "HTML5",
       "CSS3",
-      "Tailwind CSS",
-      "Vite",
-      "Next.js",
     ],
     backend: [
-      "Java",
-      "Spring Boot",
       "Node.js",
       "NestJS",
       "REST APIs",
+      "Java",
+      "Spring Boot",
       "Socket.IO",
-      "PHP",
       "Python",
     ],
-    databases: ["PostgreSQL", "MySQL", "SQL", "Prisma", "Firebase / Firestore"],
+    databases: [
+      "PostgreSQL",
+      "Prisma",
+      "Firebase / Firestore",
+      "SQL",
+    ],
     devtools: [
-      "Git",
-      "GitHub",
+      "Docker",
       "Linux",
+      "Git",
       "Jest",
       "Playwright",
-      "Debugging & Testing",
-      "Wireshark",
-      "MATLAB",
+      "Cloudflare",
     ],
     ai: [
+      "Codex & Antigravity AI Workflows",
       "Generative AI Integrations",
-      "AI Agents",
-      "Workflow Automation",
-      "LLM-Assisted Workflows",
+      "AI Automation & Agents",
       "Prompt Engineering",
-      "Structured Outputs",
-      "n8n",
-      "OpenAI / ChatGPT",
-      "Codex",
-      "Claude",
-      "Gemini",
+      "LLM Tool Calling & Structured Outputs",
     ],
     cloud: [
-      "Docker",
+      "Docker & Containerization",
+      "Linux Server Management",
       "Cloudflare Tunnels",
       "Vercel",
-      "Microsoft Azure",
+      "Self-Hosted Infrastructure",
     ],
     other: [
-      "Authentication",
-      "RBAC",
-      "Power BI",
-      "React Query",
-      "Zustand",
+      "Authentication & RBAC",
+      "RESTful API Design",
+      "System Monitoring & Observability",
+      "PDF Reporting",
+      "Fuzzy Search with Typo Tolerance",
     ],
   },
   education: [
     {
       institution: "University of Thessaly",
-      degree: "BSc in Digital Systems",
-      period: "2022 - Present",
+      degree: "BSc in Digital Systems | Larisa, Greece",
+      period: "Oct 2023 - Present",
       details: [
         "Entering final year.",
-        "Focus on software engineering, web development, databases, artificial intelligence, networks, and digital systems.",
+        "Focus on software engineering, web development, databases, artificial intelligence, networks and digital systems.",
       ],
     },
   ],
   experience: [
     {
-      role: "Special Forces",
-      company: "Hellenic Armed Forces",
-      period: "19/07/2022 - 19/03/2023 | Completed Military Service",
+      role: "BP - Gas Station Employee",
+      company: "BP",
+      period: "Mar 2023 - Aug 2026",
       description: [
-        "Strengthened discipline, teamwork, reliability, adaptability, and decision-making under pressure.",
+        "Worked in a fast-paced customer-facing environment, following operational procedures, handling responsibilities accurately and maintaining consistent service.",
       ],
     },
     {
-      role: "Gas Station Employee",
-      period: "Additional Experience",
+      role: "Hellenic Armed Forces - Special Forces",
+      company: "Hellenic Armed Forces",
+      period: "Jul 2022 - Mar 2023",
       description: [
-        "Worked accurately in a fast-paced customer-facing environment while following operational procedures and maintaining consistent service.",
+        "Completed military service; strengthened discipline, teamwork, reliability, adaptability and decision-making under pressure.",
       ],
     },
   ],
   projects: [
     {
+      name: "HomeOps - Homelab Operations & Observability Platform",
+      description:
+        "Designed and built a self-hosted operations platform for monitoring services, containers, networks and infrastructure, including health checks, alerts, incident tracking, historical data and dependency mapping. Worked end-to-end across backend APIs, dashboards, Docker/Linux deployment, monitoring and troubleshooting, with ongoing automation and reliability improvements.",
+      technologies: [
+        "React",
+        "Node.js",
+        "REST APIs",
+        "Docker",
+        "Linux",
+        "Cloudflare",
+      ],
+      link: "https://github.com/spandreou/homeops",
+    },
+    {
       name: "Municipal Police Management Platform",
       description:
-        "Desktop and API platform with JWT authentication, role-based access, ticket lifecycle management, vehicle records, audit history, real-time updates, PDF reporting, fuzzy search, and automated tests.",
+        "Designed and developed a full-stack desktop and backend platform with REST APIs, PostgreSQL data models, JWT authentication, RBAC, audit history, ticket and vehicle workflows, real-time updates and PDF reporting. Implemented Greek/Greeklish fuzzy search with typo tolerance, automated testing and containerized deployment.",
       technologies: [
         "React",
         "TypeScript",
@@ -172,23 +181,9 @@ export const resumeData: ResumeData = {
       link: "https://github.com/spandreou/MunicipalPoliceProject",
     },
     {
-      name: "Shiftoryx",
+      name: "HomeLabShare - Self-Hosted File Sharing Platform",
       description:
-        "Production shift-planning app with rule-based schedule generation, drag-and-drop editing, rest-day constraints, history, analytics, templates, and exports.",
-      technologies: [
-        "React",
-        "TypeScript",
-        "Firebase",
-        "Zustand",
-        "dnd-kit",
-        "Vercel",
-      ],
-      link: "https://github.com/spandreou/GasStationProject",
-    },
-    {
-      name: "HomeLabShare",
-      description:
-        "Self-hosted file-sharing platform with authentication, per-user quotas, uploads, share links, favourites, invite codes, and administration tools.",
+        "Designed and deployed a self-hosted file-sharing platform with authentication, invite-based access, per-user storage quotas, uploads, share links, favourites, recent files and administration tools. Built a PostgreSQL-backed, containerized deployment exposed through a secure Cloudflare-based setup.",
       technologies: [
         "Next.js",
         "TypeScript",
@@ -200,32 +195,31 @@ export const resumeData: ResumeData = {
       link: "https://github.com/spandreou/homelabshare",
     },
     {
-      name: "HomeOps",
+      name: "Shiftoryx - Workforce Scheduling Platform",
       description:
-        "Central homelab operations and observability workspace for services, containers, networks, Cloudflare tunnels, backups, alerts, reports, incidents, history, timelines, and dependency intelligence.",
+        "Built a workforce scheduling application with rule-based schedule generation, employee availability and leave handling, shift constraints, manual editing, analytics, history and export functionality. Designed complex scheduling logic and business rules while maintaining responsive UX and reliable data synchronization.",
       technologies: [
         "React",
         "TypeScript",
-        "Node.js",
-        "Python",
-        "Docker",
-        "Linux",
-        "Cloudflare",
+        "Firebase / Firestore",
+        "Zustand",
+        "dnd-kit",
+        "Vercel",
       ],
+      link: "https://github.com/spandreou/GasStationProject",
     },
   ],
   certifications: [
     {
-      name: "ESB Certificate of Proficiency in English (C2)",
-      issuer: "ESB",
+      name: "Univators 2.0: Machine Learning & Artificial Intelligence (18 hours)",
+      issuer: "Code.Hub",
+      year: "2025",
     },
     {
       name: "ECDL - Word & Excel",
     },
     {
-      name: "Univators 2.0: Machine Learning & Artificial Intelligence (18 hours)",
-      issuer: "Code.Hub",
-      year: "2025",
+      name: "English - C2 Proficiency",
     },
   ],
   languages: ["Greek - Native", "English - C2 Proficiency"],

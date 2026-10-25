@@ -20,9 +20,6 @@ export function HeroSection() {
       id="home"
       className="relative flex min-h-[calc(100svh-var(--navbar-height))] items-center justify-center py-10 sm:py-16"
     >
-      <div className="absolute left-1/2 top-1/2 -z-10 h-[24rem] w-[24rem] max-w-full -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-300/14 blur-3xl sm:h-[34rem] sm:w-[34rem]" />
-      <div aria-hidden="true" className="noise-overlay pointer-events-none absolute inset-0 z-0" />
-
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-center text-center">
         <motion.div
           className="w-full max-w-full"

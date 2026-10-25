@@ -1,18 +1,18 @@
 const professionalTitle = [
-  "Junior Full-Stack Developer",
+  "Full Stack Developer",
   "AI Automation & Integrations",
 ] as const;
 
 export const siteConfig = {
   name: "Spyridon Andreou",
-  siteName: "Spyridon Andreou | Junior Full-Stack Developer & AI Automation",
+  siteName: "Spyridon Andreou | Full Stack Developer & AI Automation",
   description:
-    "Portfolio of Spyridon Andreou, a Junior Full-Stack Developer focused on React, TypeScript, Java, backend systems, AI automation, intelligent integrations, Docker, and self-hosted infrastructure.",
+    "Portfolio of Spyridon Andreou, a Full Stack Developer focused on React, TypeScript, Java, backend systems, AI automation, intelligent integrations, Docker, and self-hosted infrastructure.",
   professionalTitle,
   heroDescription:
     "I build full-stack applications, automation workflows, and AI-powered integrations using modern web technologies, APIs, and self-hosted infrastructure.",
   email: "spyridonandreou04@gmail.com",
-  location: "Larisa / Thebes, Greece",
+  location: "Larisa, Greece",
   links: {
     github: "https://github.com/spandreou",
     linkedin: "https://www.linkedin.com/in/spandreou",
@@ -20,7 +20,6 @@ export const siteConfig = {
   },
   keywords: [
     "Spyridon Andreou",
-    "Junior Full-Stack Developer",
     "Full Stack Developer",
     "AI Automation",
     "AI Integrations",

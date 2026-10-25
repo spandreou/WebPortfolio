@@ -184,25 +184,27 @@
 
 .background-grid {
   background-image:
-    linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(34, 211, 238, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 211, 238, 0.04) 1px, transparent 1px);
   background-size: 84px 84px;
-  mask-image: radial-gradient(circle at center, black 38%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 25%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 25%, transparent 85%);
 }
 
 .background-vignette {
   background: radial-gradient(
-    circle at center,
-    transparent 25%,
-    rgba(2, 6, 23, 0.9) 85%
+    ellipse 85% 75% at 50% 50%,
+    transparent 35%,
+    rgba(2, 6, 23, 0.7) 75%,
+    #020617 100%
   );
 }
 
-.noise-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.78'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 180px 180px;
-  opacity: 0.035;
+.background-ambient-glow {
+  background:
+    radial-gradient(ellipse 65% 50% at 50% 42%, rgba(34, 211, 238, 0.12) 0%, rgba(56, 189, 248, 0.05) 50%, transparent 80%),
+    radial-gradient(ellipse 50% 40% at 20% 18%, rgba(34, 211, 238, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 80% 16%, rgba(129, 140, 248, 0.07) 0%, transparent 70%);
 }
 
 .hero-title {
@@ -243,6 +245,10 @@
   height: clamp(2.5rem, 4.8vw, 3.6rem);
 }
 
+.particle-identity-role canvas {
+  filter: drop-shadow(0 0 6px rgba(103, 232, 249, 0.35));
+}
+
 .particle-identity-role .particle-identity-fallback {
   color: rgba(207, 250, 254, 0.78);
   font-size: clamp(1rem, 2.75vw, 1.75rem);
@@ -255,6 +261,10 @@
 .particle-identity-name {
   height: clamp(4.75rem, 10vw, 8.5rem);
   margin-top: clamp(0.35rem, 1vw, 0.85rem);
+}
+
+.particle-identity-name canvas {
+  filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.45));
 }
 
 .particle-identity-name .particle-identity-fallback {

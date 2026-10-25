@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/Button";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { CertificationsPanel } from "@/components/resume/CertificationsPanel";
+import { CvDocumentViewer } from "@/components/resume/CvDocumentViewer";
 import { EducationTimeline } from "@/components/resume/EducationTimeline";
 import { ExperienceTimeline } from "@/components/resume/ExperienceTimeline";
 import { LanguagesPanel } from "@/components/resume/LanguagesPanel";
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
   ...createMetadata({
     title: "Resume",
     description:
-      "Resume of Spyridon Andreou, a Junior Full-Stack Developer focused on AI automation, intelligent integrations, and end-to-end software delivery.",
+      "Resume of Spyridon Andreou, a Full Stack Developer focused on AI automation, intelligent integrations, and end-to-end software delivery.",
     path: "/resume",
   }),
 };
@@ -26,6 +27,16 @@ export default function ResumePage() {
       <ResumeHeroCard personal={resumeData.personal} links={resumeData.links} />
 
       <ScrollReveal y={20} duration={0.62}>
+        <section id="cv-document">
+          <ResumeSectionHeading
+            title="Curriculum Vitae Preview"
+            subtitle="View or read the official document directly online, open it in full screen, or download a local copy."
+          />
+          <CvDocumentViewer />
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal y={20} duration={0.62} delay={0.02}>
         <section id="skills">
           <ResumeSectionHeading
             title="Skills Matrix"

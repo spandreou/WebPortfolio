@@ -148,6 +148,9 @@ const ParticleText = ({
       smoothY: 0,
     };
 
+    let isVisible = true;
+    let isTabActive = !document.hidden;
+
     const startGather = (fromScatter = true): void => {
       if (!particles.length) return;
 
@@ -181,7 +184,7 @@ const ParticleText = ({
       const size = particle.size;
       ctx.fillStyle = particle.color;
 
-      if (size <= 2.1) {
+      if (size <= 2.2) {
         ctx.fillRect(
           particle.x - size / 2,
           particle.y - size / 2,
@@ -197,21 +200,26 @@ const ParticleText = ({
     };
 
     const render = (now: number): void => {
-      ctx.clearRect(0, 0, width, height);
-
-      if (glow && !reducedMotion) {
-        ctx.shadowBlur = particleSize * 3;
-        ctx.shadowColor = highlightColor;
-      } else {
-        ctx.shadowBlur = 0;
+      if (!isVisible || !isTabActive) {
+        animationFrame = null;
+        return;
       }
+
+      ctx.clearRect(0, 0, width, height);
 
       pointer.smoothX += (pointer.x - pointer.smoothX) * 0.18;
       pointer.smoothY += (pointer.y - pointer.smoothY) * 0.18;
 
       let complete = true;
+      const driftTime = now * 0.001;
+      const isSettled = !gathering && !reducedMotion;
 
-      particles.forEach((particle) => {
+      if (isSettled) {
+        ctx.globalAlpha = 1;
+      }
+
+      for (let i = 0; i < particles.length; i++) {
+        const particle = particles[i];
         let baseX = particle.targetX;
         let baseY = particle.targetY;
         let progress = 1;
@@ -227,16 +235,17 @@ const ParticleText = ({
           baseY =
             particle.startY + (particle.targetY - particle.startY) * eased;
           if (progress < 1) complete = false;
-        } else if (!reducedMotion && idleDrift > 0) {
-          const driftTime = now * 0.001;
-          baseX +=
-            Math.sin(driftTime * 0.9 + particle.seed * 10) *
-            idleDrift *
-            particle.depth;
-          baseY +=
-            Math.cos(driftTime * 0.75 + particle.depth * 10) *
-            idleDrift *
-            particle.depth;
+        } else if (idleDrift > 0) {
+          // Cohesive spatial harmonic wave flow: neighboring particles move in gentle harmony
+          const waveX =
+            Math.sin(driftTime * 0.75 + particle.targetX * 0.008 + particle.targetY * 0.004) * 0.7 +
+            Math.sin(driftTime * 0.4 + particle.seed * 3.14) * 0.3;
+          const waveY =
+            Math.cos(driftTime * 0.65 + particle.targetY * 0.009 + particle.targetX * 0.004) * 0.7 +
+            Math.cos(driftTime * 0.35 + particle.depth * 3.14) * 0.3;
+
+          baseX += waveX * idleDrift * (0.85 + particle.depth * 0.3);
+          baseY += waveY * idleDrift * (0.85 + particle.depth * 0.3);
         }
 
         if (
@@ -260,12 +269,15 @@ const ParticleText = ({
         particle.x += (baseX - particle.x) * follow;
         particle.y += (baseY - particle.y) * follow;
 
-        ctx.globalAlpha = clamp(0.35 + progress * 0.65, 0, 1);
+        if (gathering) {
+          ctx.globalAlpha = clamp(0.35 + progress * 0.65, 0, 1);
+        }
         drawParticle(particle);
-      });
+      }
 
-      ctx.globalAlpha = 1;
-      ctx.shadowBlur = 0;
+      if (gathering) {
+        ctx.globalAlpha = 1;
+      }
 
       if (gathering && complete) {
         gathering = false;
@@ -275,7 +287,7 @@ const ParticleText = ({
     };
 
     const ensureRenderLoop = (): void => {
-      if (animationFrame === null) {
+      if (animationFrame === null && isVisible && isTabActive) {
         animationFrame = window.requestAnimationFrame(render);
       }
     };
@@ -288,7 +300,8 @@ const ParticleText = ({
 
       if (width <= 0 || height <= 0) return;
 
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const isMobile = width < 640;
+      dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.5);
       canvas.width = Math.max(1, Math.floor(width * dpr));
       canvas.height = Math.max(1, Math.floor(height * dpr));
       canvas.style.width = "100%";
@@ -361,28 +374,52 @@ const ParticleText = ({
         offscreen.width,
         offscreen.height,
       );
-      const step = Math.max(2, Math.floor(density));
-      const targets: Target[] = sampleInkCells(
+
+      // Adaptive step size based on density and viewport width
+      const baseStep = Math.max(2, Math.floor(density));
+      const step = isMobile ? baseStep + 1 : baseStep;
+
+      const rawSamples = sampleInkCells(
         imageData.data,
         offscreen.width,
         offscreen.height,
         step,
-      ).map((sample) => ({
-        x: width / 2 - offscreen.width / 2 + sample.x,
-        y: height / 2 - offscreen.height / 2 + sample.y,
-        alpha: sample.alpha,
-      }));
-
-      const maxParticles = Math.max(
-        1600,
-        Math.min(5200, Math.floor((width * height) / 90)),
       );
-      const stride = Math.max(1, Math.ceil(targets.length / maxParticles));
+
+      // Uniform spatial sampling across text paths (eliminates 1D stride striping/checkerboard)
+      const particleBudget = isMobile ? 700 : 2400;
+      let targets: Target[];
+
+      if (rawSamples.length <= particleBudget) {
+        targets = rawSamples.map((sample) => ({
+          x: width / 2 - offscreen.width / 2 + sample.x,
+          y: height / 2 - offscreen.height / 2 + sample.y,
+          alpha: sample.alpha,
+        }));
+      } else {
+        const ratio = rawSamples.length / particleBudget;
+        targets = [];
+        let accum = 0;
+        for (let i = 0; i < rawSamples.length; i++) {
+          accum += 1;
+          if (accum >= ratio) {
+            accum -= ratio;
+            const sample = rawSamples[i];
+            targets.push({
+              x: width / 2 - offscreen.width / 2 + sample.x,
+              y: height / 2 - offscreen.height / 2 + sample.y,
+              alpha: sample.alpha,
+            });
+          }
+        }
+      }
+
       const baseRgb = hexToRgb(color);
       const highlightRgb = hexToRgb(highlightColor);
-      const selected = targets.filter((_, index) => index % stride === 0);
+      const effectiveScatter = isMobile ? scatter * 0.65 : scatter;
+      const baseParticleSize = isMobile ? particleSize * 0.9 : particleSize;
 
-      particles = selected.map((target, index) => {
+      particles = targets.map((target, index) => {
         const seed = ((index * 9301 + 49297) % 233280) / 233280;
         const depth =
           0.45 + (((index * 233 + 97) % 1000) / 1000) * 0.9;
@@ -400,15 +437,15 @@ const ParticleText = ({
             : color;
         const angle = seed * Math.PI * 2;
         const distance =
-          (reducedMotion ? 0 : scatter) * (0.35 + depth * 0.75);
+          (reducedMotion ? 0 : effectiveScatter) * (0.35 + depth * 0.75);
         const startX =
           target.x +
           Math.cos(angle) * distance +
-          (seed - 0.5) * scatter * 0.45;
+          (seed - 0.5) * effectiveScatter * 0.45;
         const startY =
           target.y +
           Math.sin(angle) * distance +
-          (depth - 0.9) * scatter * 0.45;
+          (depth - 0.9) * effectiveScatter * 0.45;
 
         return {
           x: reducedMotion ? target.x : startX,
@@ -418,8 +455,8 @@ const ParticleText = ({
           targetX: target.x,
           targetY: target.y,
           size: Math.max(
-            0.6,
-            particleSize * (0.75 + target.alpha * 0.45),
+            1.0,
+            baseParticleSize * (0.85 + target.alpha * 0.3),
           ),
           color: particleColor,
           seed,
@@ -455,6 +492,7 @@ const ParticleText = ({
     };
 
     const handlePointerMove = (event: PointerEvent): void => {
+      if (event.pointerType === "touch") return;
       const rect = canvas.getBoundingClientRect();
       pointer.x = event.clientX - rect.left;
       pointer.y = event.clientY - rect.top;
@@ -466,6 +504,7 @@ const ParticleText = ({
     };
 
     const handlePointerEnter = (event: PointerEvent): void => {
+      if (event.pointerType === "touch") return;
       handlePointerMove(event);
       if (trigger === "hover") startGather(true);
     };
@@ -482,7 +521,32 @@ const ParticleText = ({
       void sampleText();
     };
 
+    const handleVisibilityChange = (): void => {
+      isTabActive = !document.hidden;
+      if (isVisible && isTabActive) {
+        ensureRenderLoop();
+      } else if (animationFrame !== null) {
+        window.cancelAnimationFrame(animationFrame);
+        animationFrame = null;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isVisible = entry?.isIntersecting ?? true;
+        if (isVisible && isTabActive) {
+          ensureRenderLoop();
+        } else if (animationFrame !== null) {
+          window.cancelAnimationFrame(animationFrame);
+          animationFrame = null;
+        }
+      },
+      { threshold: 0.05 },
+    );
+
     reduceMotionQuery?.addEventListener("change", handleReduceMotionChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     canvas.addEventListener("pointerenter", handlePointerEnter);
     canvas.addEventListener("pointermove", handlePointerMove);
     canvas.addEventListener("pointerleave", handlePointerLeave);
@@ -490,11 +554,14 @@ const ParticleText = ({
 
     const resizeObserver = new ResizeObserver(queueSample);
     resizeObserver.observe(container);
+    observer.observe(container);
     void sampleText();
 
     return () => {
       buildId += 1;
       resizeObserver.disconnect();
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       reduceMotionQuery?.removeEventListener(
         "change",
         handleReduceMotionChange,

@@ -33,18 +33,42 @@ void main() {
   float mr = min(uResolution.x, uResolution.y);
   vec2 uv = (vUv.xy * 2.0 - 1.0) * uResolution.xy / mr;
 
-  uv += (uMouse - vec2(0.5)) * uAmplitude;
+  uv += (uMouse - vec2(0.5)) * (uAmplitude * 0.6);
 
-  float d = -uTime * 0.5 * uSpeed;
+  float t = uTime * 0.35 * uSpeed;
+
+  // Smooth multi-frequency domain warping without chaotic caustic seams
+  vec2 p = uv * 0.85;
   float a = 0.0;
-  for (float i = 0.0; i < 8.0; ++i) {
-    a += cos(i - d - a * uv.x);
-    d += sin(uv.y * i + a);
+  float d = -t * 0.7;
+
+  for (float i = 1.0; i <= 6.0; ++i) {
+    p += vec2(
+      sin(p.y * i * 0.55 + t * 0.35 + i * 1.2) * 0.28,
+      cos(p.x * i * 0.55 - t * 0.3 + i * 1.5) * 0.28
+    );
+    a += cos(length(p) * 1.6 - t * 0.5 + i);
+    d += sin(p.x * 1.1 + p.y * 1.1 + t * 0.4 + a * 0.15);
   }
-  d += uTime * 0.5 * uSpeed;
-  vec3 col = vec3(cos(uv * vec2(d, a)) * 0.6 + 0.4, cos(a + d) * 0.5 + 0.5);
-  col = cos(col * cos(vec3(d, a, 2.5)) * 0.5 + 0.5) * uColor;
-  gl_FragColor = vec4(col, 1.0);
+
+  // Futuristic dark neon palette: cyan, deep electric blue, purple-violet
+  vec3 colCyan = vec3(0.14, 0.82, 0.98);
+  vec3 colBlue = vec3(0.08, 0.32, 0.88);
+  vec3 colPurple = vec3(0.56, 0.22, 0.92);
+
+  float w1 = sin(d * 0.85 + a * 0.55) * 0.5 + 0.5;
+  float w2 = cos(a * 0.85 - d * 0.45) * 0.5 + 0.5;
+
+  vec3 col = mix(colBlue, colCyan, w1);
+  col = mix(col, colPurple, w2 * 0.6);
+  col *= (sin(a + d + t * 0.8) * 0.2 + 0.8);
+  col *= uColor;
+
+  // Seamless elliptical perimeter falloff to cleanly merge into background
+  vec2 normCoord = (vUv.xy * 2.0 - 1.0);
+  float vignette = smoothstep(1.35, 0.35, length(normCoord));
+
+  gl_FragColor = vec4(col * vignette, 1.0);
 }
 `;
 
@@ -97,8 +121,12 @@ export default function Iridescence({
     });
 
     const resize = () => {
-      const scale = Math.min(window.devicePixelRatio, 2);
-      renderer.setSize(container.offsetWidth * scale, container.offsetHeight * scale);
+      const isMobile = window.innerWidth < 768;
+      const scale = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.25);
+      const width = Math.max(1, Math.floor(container.offsetWidth * scale));
+      const height = Math.max(1, Math.floor(container.offsetHeight * scale));
+
+      renderer.setSize(width, height);
       gl.canvas.style.width = `${container.offsetWidth}px`;
       gl.canvas.style.height = `${container.offsetHeight}px`;
       program.uniforms.uResolution.value = new Color(
@@ -113,12 +141,61 @@ export default function Iridescence({
 
     const mesh = new Mesh(gl, { geometry, program });
 
-    const update = (time: number) => {
-      rafId = window.requestAnimationFrame(update);
+    let isVisible = true;
+    let isTabActive = !document.hidden;
+
+    const renderFrame = (time: number) => {
       program.uniforms.uTime.value = time * 0.001;
       renderer.render({ scene: mesh });
     };
-    rafId = window.requestAnimationFrame(update);
+
+    const update = (time: number) => {
+      if (isVisible && isTabActive) {
+        renderFrame(time);
+        rafId = window.requestAnimationFrame(update);
+      } else {
+        rafId = 0;
+      }
+    };
+
+    const startLoop = () => {
+      if (!rafId && isVisible && isTabActive) {
+        rafId = window.requestAnimationFrame(update);
+      }
+    };
+
+    const stopLoop = () => {
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+    };
+
+    startLoop();
+
+    const handleVisibilityChange = () => {
+      isTabActive = !document.hidden;
+      if (isTabActive) {
+        startLoop();
+      } else {
+        stopLoop();
+      }
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        isVisible = entry?.isIntersecting ?? true;
+        if (isVisible) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0.05 },
+    );
+    observer.observe(container);
 
     container.appendChild(gl.canvas);
 
@@ -136,7 +213,9 @@ export default function Iridescence({
     }
 
     return () => {
-      window.cancelAnimationFrame(rafId);
+      stopLoop();
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("resize", resize);
       if (mouseReact) {
         container.removeEventListener("mousemove", handleMouseMove);
