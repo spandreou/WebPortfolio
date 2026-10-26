@@ -16,9 +16,10 @@ export function sampleInkCells(
 
   for (let y = 0; y < height; y += cellSize) {
     for (let x = 0; x < width; x += cellSize) {
-      let strongestAlpha = 0;
-      let strongestX = x;
-      let strongestY = y;
+      let maxAlpha = 0;
+      let totalWeight = 0;
+      let sumX = 0;
+      let sumY = 0;
 
       for (let cellY = y; cellY < Math.min(y + cellSize, height); cellY += 1) {
         for (
@@ -28,19 +29,23 @@ export function sampleInkCells(
         ) {
           const alpha = pixels[(cellY * width + cellX) * 4 + 3];
 
-          if (alpha > strongestAlpha) {
-            strongestAlpha = alpha;
-            strongestX = cellX;
-            strongestY = cellY;
+          if (alpha > maxAlpha) {
+            maxAlpha = alpha;
+          }
+          if (alpha > alphaThreshold) {
+            const weight = alpha * alpha;
+            totalWeight += weight;
+            sumX += cellX * weight;
+            sumY += cellY * weight;
           }
         }
       }
 
-      if (strongestAlpha > alphaThreshold) {
+      if (maxAlpha > alphaThreshold && totalWeight > 0) {
         samples.push({
-          x: strongestX,
-          y: strongestY,
-          alpha: strongestAlpha / 255,
+          x: Math.round((sumX / totalWeight) * 100) / 100,
+          y: Math.round((sumY / totalWeight) * 100) / 100,
+          alpha: maxAlpha / 255,
         });
       }
     }

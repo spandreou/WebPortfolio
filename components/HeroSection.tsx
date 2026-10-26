@@ -34,13 +34,9 @@ export function HeroSection() {
             </div>
 
             <div aria-hidden="true" className="particle-identity-stack">
-              {identityLines.map((line, lineIndex) => {
+              {identityLines.map((line) => {
                 const isName = line.kind === "name";
-                const particleSize = isName
-                  ? 1.9
-                  : lineIndex === 1
-                    ? 1.8
-                    : 1.45;
+                const particleSize = isName ? 1.85 : 1.4;
 
                 return (
                   <div
@@ -48,7 +44,7 @@ export function HeroSection() {
                     className={
                       isName
                         ? "particle-identity-line particle-identity-name font-sans"
-                        : "particle-identity-line particle-identity-role font-mono"
+                        : "particle-identity-line particle-identity-role font-sans font-semibold tracking-wider"
                     }
                   >
                     {line.renderFallback ? (

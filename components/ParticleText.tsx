@@ -139,6 +139,7 @@ const ParticleText = ({
     let width = 0;
     let height = 0;
     let dpr = 1;
+    let isMobile = false;
 
     const pointer = {
       active: false,
@@ -181,21 +182,15 @@ const ParticleText = ({
     };
 
     const drawParticle = (particle: Particle): void => {
-      const size = particle.size;
       ctx.fillStyle = particle.color;
-
-      if (size <= 2.2) {
-        ctx.fillRect(
-          particle.x - size / 2,
-          particle.y - size / 2,
-          size,
-          size,
-        );
-        return;
-      }
-
       ctx.beginPath();
-      ctx.arc(particle.x, particle.y, size / 2, 0, Math.PI * 2);
+      ctx.arc(
+        particle.x,
+        particle.y,
+        Math.max(0.65, particle.size / 2),
+        0,
+        Math.PI * 2,
+      );
       ctx.fill();
     };
 
@@ -236,16 +231,17 @@ const ParticleText = ({
             particle.startY + (particle.targetY - particle.startY) * eased;
           if (progress < 1) complete = false;
         } else if (idleDrift > 0) {
-          // Cohesive spatial harmonic wave flow: neighboring particles move in gentle harmony
+          // Individual phase orbital drift: avoids planar density ripple waves / stripes
           const waveX =
-            Math.sin(driftTime * 0.75 + particle.targetX * 0.008 + particle.targetY * 0.004) * 0.7 +
-            Math.sin(driftTime * 0.4 + particle.seed * 3.14) * 0.3;
+            Math.sin(driftTime * 0.85 + particle.seed * 6.283) * 0.65 +
+            Math.sin(driftTime * 0.4 + particle.depth * 6.283) * 0.35;
           const waveY =
-            Math.cos(driftTime * 0.65 + particle.targetY * 0.009 + particle.targetX * 0.004) * 0.7 +
-            Math.cos(driftTime * 0.35 + particle.depth * 3.14) * 0.3;
+            Math.cos(driftTime * 0.75 + particle.depth * 6.283) * 0.65 +
+            Math.cos(driftTime * 0.45 + particle.seed * 6.283) * 0.35;
 
-          baseX += waveX * idleDrift * (0.85 + particle.depth * 0.3);
-          baseY += waveY * idleDrift * (0.85 + particle.depth * 0.3);
+          const driftScale = isMobile ? 0.45 : 0.75;
+          baseX += waveX * idleDrift * driftScale;
+          baseY += waveY * idleDrift * driftScale;
         }
 
         if (
@@ -300,8 +296,8 @@ const ParticleText = ({
 
       if (width <= 0 || height <= 0) return;
 
-      const isMobile = width < 640;
-      dpr = Math.min(window.devicePixelRatio || 1, isMobile ? 1 : 1.5);
+      isMobile = width < 640;
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.max(1, Math.floor(width * dpr));
       canvas.height = Math.max(1, Math.floor(height * dpr));
       canvas.style.width = "100%";
@@ -329,19 +325,29 @@ const ParticleText = ({
       if (!offCtx) return;
 
       const content = String(text || " ");
-      const maxTextWidth = width * 0.92;
+      const maxTextWidth = width * 0.94;
+      if ("letterSpacing" in offCtx) {
+        (offCtx as unknown as { letterSpacing: string }).letterSpacing = isMobile
+          ? "0.04em"
+          : "0.05em";
+      }
       offCtx.font = font;
       let metrics = offCtx.measureText(content);
       const measuredWidth = Math.max(1, metrics.width);
       if (measuredWidth > maxTextWidth) {
         resolvedSize = Math.max(
-          18,
+          14,
           resolvedSize * (maxTextWidth / measuredWidth),
         );
         font = `${fontWeight} ${resolvedSize}px ${resolvedFamily}`;
         await waitForFonts(font);
         if (currentBuild !== buildId) return;
         offCtx.font = font;
+        if ("letterSpacing" in offCtx) {
+          (offCtx as unknown as { letterSpacing: string }).letterSpacing = isMobile
+            ? "0.04em"
+            : "0.05em";
+        }
         metrics = offCtx.measureText(content);
       }
 
@@ -363,6 +369,11 @@ const ParticleText = ({
       offscreen.height = textHeight + padding * 2;
       offCtx.clearRect(0, 0, offscreen.width, offscreen.height);
       offCtx.font = font;
+      if ("letterSpacing" in offCtx) {
+        (offCtx as unknown as { letterSpacing: string }).letterSpacing = isMobile
+          ? "0.04em"
+          : "0.05em";
+      }
       offCtx.textAlign = "left";
       offCtx.textBaseline = "alphabetic";
       offCtx.fillStyle = "#ffffff";
@@ -375,9 +386,8 @@ const ParticleText = ({
         offscreen.height,
       );
 
-      // Adaptive step size based on density and viewport width
-      const baseStep = Math.max(2, Math.floor(density));
-      const step = isMobile ? baseStep + 1 : baseStep;
+      // Uniform sub-pixel sampling: step = 2 preserves full character fidelity with zero moire aliasing
+      const step = 2;
 
       const rawSamples = sampleInkCells(
         imageData.data,
@@ -386,33 +396,12 @@ const ParticleText = ({
         step,
       );
 
-      // Uniform spatial sampling across text paths (eliminates 1D stride striping/checkerboard)
-      const particleBudget = isMobile ? 700 : 2400;
-      let targets: Target[];
-
-      if (rawSamples.length <= particleBudget) {
-        targets = rawSamples.map((sample) => ({
-          x: width / 2 - offscreen.width / 2 + sample.x,
-          y: height / 2 - offscreen.height / 2 + sample.y,
-          alpha: sample.alpha,
-        }));
-      } else {
-        const ratio = rawSamples.length / particleBudget;
-        targets = [];
-        let accum = 0;
-        for (let i = 0; i < rawSamples.length; i++) {
-          accum += 1;
-          if (accum >= ratio) {
-            accum -= ratio;
-            const sample = rawSamples[i];
-            targets.push({
-              x: width / 2 - offscreen.width / 2 + sample.x,
-              y: height / 2 - offscreen.height / 2 + sample.y,
-              alpha: sample.alpha,
-            });
-          }
-        }
-      }
+      // Map 1:1 from ink cells: eliminates 1D raster decimation stripes and missing stroke artifacts
+      const targets: Target[] = rawSamples.map((sample) => ({
+        x: width / 2 - offscreen.width / 2 + sample.x,
+        y: height / 2 - offscreen.height / 2 + sample.y,
+        alpha: sample.alpha,
+      }));
 
       const baseRgb = hexToRgb(color);
       const highlightRgb = hexToRgb(highlightColor);

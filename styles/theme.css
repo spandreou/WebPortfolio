@@ -282,12 +282,20 @@
   }
 
   .particle-identity-role {
-    height: 2.5rem;
+    height: 2.25rem;
+  }
+
+  .particle-identity-role canvas {
+    filter: drop-shadow(0 0 3px rgba(103, 232, 249, 0.4));
   }
 
   .particle-identity-name {
-    height: 4.5rem;
-    margin-top: 0.25rem;
+    height: 3.85rem;
+    margin-top: 0.15rem;
+  }
+
+  .particle-identity-name canvas {
+    filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.45));
   }
 }
 

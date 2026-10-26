@@ -104,7 +104,7 @@ export function TargetFrame({ children, className }: TargetFrameProps) {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "target-frame group relative inline-flex max-w-full items-center justify-center overflow-hidden rounded-2xl px-6 py-4 transition-all duration-500 ease-out hover:scale-[1.01] sm:px-9 sm:py-6",
+        "target-frame group relative inline-flex max-w-full items-center justify-center overflow-hidden rounded-2xl px-3.5 py-4 transition-all duration-500 ease-out hover:scale-[1.01] sm:px-9 sm:py-6",
         className,
       )}
     >
