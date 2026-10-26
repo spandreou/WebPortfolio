@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef } from "react";
-import type { MouseEvent as ReactMouseEvent, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type TargetFrameProps = {
@@ -48,7 +48,7 @@ export function TargetFrame({ children, className }: TargetFrameProps) {
     rafRef.current = window.requestAnimationFrame(runAnimation);
   };
 
-  const handleMouseMove = (event: ReactMouseEvent<HTMLDivElement>) => {
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     const frame = frameRef.current;
     if (!frame) {
       return;
@@ -63,21 +63,12 @@ export function TargetFrame({ children, className }: TargetFrameProps) {
       y: Math.max(0, Math.min(100, y)),
     };
 
-    requestTick();
-  };
-
-  const handleMouseEnter = () => {
-    const frame = frameRef.current;
-    if (!frame) {
-      return;
-    }
-
     activeRef.current = true;
     frame.style.setProperty("--glow-opacity", "1");
     requestTick();
   };
 
-  const handleMouseLeave = () => {
+  const handlePointerLeave = () => {
     const frame = frameRef.current;
     if (!frame) {
       return;
@@ -100,28 +91,31 @@ export function TargetFrame({ children, className }: TargetFrameProps) {
   return (
     <div
       ref={frameRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      onPointerMove={handlePointerMove}
+      onPointerDown={handlePointerMove}
+      onPointerEnter={handlePointerMove}
+      onPointerLeave={handlePointerLeave}
+      onPointerUp={handlePointerLeave}
+      onPointerCancel={handlePointerLeave}
       className={cn(
-        "target-frame group relative inline-flex max-w-full items-center justify-center overflow-hidden rounded-2xl px-3.5 py-4 transition-all duration-500 ease-out hover:scale-[1.01] sm:px-9 sm:py-6",
+        "target-frame group relative inline-flex max-w-full items-center justify-center overflow-hidden rounded-2xl px-3.5 py-4 transition-all duration-500 ease-out hover:scale-[1.01] sm:px-9 sm:py-6 touch-pan-y",
         className,
       )}
     >
-      <span className="absolute inset-0 rounded-2xl border border-cyan-400/30 bg-slate-900/40 shadow-[0_0_30px_rgba(34,211,238,0.12)] backdrop-blur-md transition-all duration-500 ease-out group-hover:shadow-[0_0_60px_rgba(34,211,238,0.22)]" />
-      <span className="absolute inset-[1px] rounded-[15px] border border-white/10" />
+      <span className="pointer-events-none absolute inset-0 rounded-2xl border border-cyan-400/30 bg-slate-900/40 shadow-[0_0_30px_rgba(34,211,238,0.12)] backdrop-blur-md transition-all duration-500 ease-out group-hover:shadow-[0_0_60px_rgba(34,211,238,0.22)]" />
+      <span className="pointer-events-none absolute inset-[1px] rounded-[15px] border border-white/10" />
       <span className="target-cursor-glow pointer-events-none absolute inset-0 rounded-2xl" />
       <motion.span
-        className="absolute inset-0 rounded-2xl border border-cyan-300/35"
+        className="pointer-events-none absolute inset-0 rounded-2xl border border-cyan-300/35"
         animate={{ opacity: [0.28, 0.55, 0.28] }}
         transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      <span className="frame-corner corner-tl" />
-      <span className="frame-corner corner-tr" />
-      <span className="frame-corner corner-bl" />
-      <span className="frame-corner corner-br" />
-      <span className="target-scanline absolute inset-y-2 -left-1/3 w-1/3" />
+      <span className="pointer-events-none frame-corner corner-tl" />
+      <span className="pointer-events-none frame-corner corner-tr" />
+      <span className="pointer-events-none frame-corner corner-bl" />
+      <span className="pointer-events-none frame-corner corner-br" />
+      <span className="pointer-events-none target-scanline absolute inset-y-2 -left-1/3 w-1/3" />
 
       <div className="relative z-10 w-full">{children}</div>
     </div>

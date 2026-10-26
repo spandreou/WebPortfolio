@@ -302,6 +302,7 @@ const ParticleText = ({
       canvas.height = Math.max(1, Math.floor(height * dpr));
       canvas.style.width = "100%";
       canvas.style.height = "100%";
+      canvas.style.touchAction = "pan-y";
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       const computed = window.getComputedStyle(container);
@@ -480,22 +481,57 @@ const ParticleText = ({
       resizeFrame = window.requestAnimationFrame(sampleText);
     };
 
-    const handlePointerMove = (event: PointerEvent): void => {
-      if (event.pointerType === "touch") return;
+    const updatePointer = (clientX: number, clientY: number): void => {
       const rect = canvas.getBoundingClientRect();
-      pointer.x = event.clientX - rect.left;
-      pointer.y = event.clientY - rect.top;
+      pointer.x = clientX - rect.left;
+      pointer.y = clientY - rect.top;
+      if (!pointer.active) {
+        pointer.smoothX = pointer.x;
+        pointer.smoothY = pointer.y;
+      }
       pointer.active = true;
     };
 
-    const handlePointerLeave = (): void => {
+    const handlePointerMove = (event: PointerEvent): void => {
+      updatePointer(event.clientX, event.clientY);
+      ensureRenderLoop();
+    };
+
+    const handlePointerDown = (event: PointerEvent): void => {
+      if (event.pointerType === "touch") {
+        try {
+          if (canvas.hasPointerCapture(event.pointerId)) {
+            canvas.releasePointerCapture(event.pointerId);
+          }
+        } catch {
+          // ignore
+        }
+      }
+      updatePointer(event.clientX, event.clientY);
+      if (trigger === "hover") startGather(true);
+      ensureRenderLoop();
+    };
+
+    const handlePointerUp = (): void => {
       pointer.active = false;
     };
 
+    const handlePointerCancel = (): void => {
+      pointer.active = false;
+    };
+
+    const handlePointerLeave = (event: PointerEvent): void => {
+      if (event.pointerType !== "touch") {
+        pointer.active = false;
+      }
+    };
+
     const handlePointerEnter = (event: PointerEvent): void => {
-      if (event.pointerType === "touch") return;
-      handlePointerMove(event);
-      if (trigger === "hover") startGather(true);
+      if (event.pointerType !== "touch") {
+        updatePointer(event.clientX, event.clientY);
+        if (trigger === "hover") startGather(true);
+        ensureRenderLoop();
+      }
     };
 
     const handleClick = (): void => {
@@ -538,6 +574,9 @@ const ParticleText = ({
     document.addEventListener("visibilitychange", handleVisibilityChange);
     canvas.addEventListener("pointerenter", handlePointerEnter);
     canvas.addEventListener("pointermove", handlePointerMove);
+    canvas.addEventListener("pointerdown", handlePointerDown);
+    canvas.addEventListener("pointerup", handlePointerUp);
+    canvas.addEventListener("pointercancel", handlePointerCancel);
     canvas.addEventListener("pointerleave", handlePointerLeave);
     canvas.addEventListener("click", handleClick);
 
@@ -557,6 +596,9 @@ const ParticleText = ({
       );
       canvas.removeEventListener("pointerenter", handlePointerEnter);
       canvas.removeEventListener("pointermove", handlePointerMove);
+      canvas.removeEventListener("pointerdown", handlePointerDown);
+      canvas.removeEventListener("pointerup", handlePointerUp);
+      canvas.removeEventListener("pointercancel", handlePointerCancel);
       canvas.removeEventListener("pointerleave", handlePointerLeave);
       canvas.removeEventListener("click", handleClick);
 
@@ -586,13 +628,13 @@ const ParticleText = ({
   return (
     <div
       ref={containerRef}
-      className={`relative block h-full min-h-[240px] w-full overflow-hidden touch-none ${className}`}
+      className={`relative block h-full min-h-[240px] w-full overflow-hidden touch-pan-y ${className}`}
       style={style}
       aria-label={text}
     >
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 block h-full w-full"
+        className="absolute inset-0 block h-full w-full touch-pan-y"
         aria-hidden="true"
       />
       <span className="sr-only">{text}</span>
